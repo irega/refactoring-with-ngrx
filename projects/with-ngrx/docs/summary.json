@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Development tasks",
+    "file": "./development-tasks.md",
+    "children": []
+  },
+  {
+    "title": "Configure formatting and linting tools",
+    "file": "./formatting-and-linting-tools.md",
+    "children": []
+  }
+]

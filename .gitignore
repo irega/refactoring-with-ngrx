@@ -1,0 +1,7 @@
+.vs/
+node_modules/
+*/node_modules
+.vscode/
+dist/
+coverage/
+junit.xml

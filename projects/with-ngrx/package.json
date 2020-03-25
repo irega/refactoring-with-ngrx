@@ -1,0 +1,94 @@
+{
+  "name": "questions-manager",
+  "version": "0.0.0",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "commit": "git cz",
+    "ng": "ng",
+    "start": "ng serve --port 4200",
+    "build": "npm run build:prod",
+    "build:barrel": "node ./npm-scripts/build-barrel.js",
+    "build:dev": "npm run clean:build && ng build --prod --sourceMap=true",
+    "build:prod": "npm run clean:build && ng build --prod",
+    "clean:build": "rimraf ./dist/*",
+    "test": "ng test",
+    "test:coverage": "ng test --ci --reporters=jest-junit --reporters=default --coverage --coverageReporters=cobertura",
+    "test:watch": "ng test --watchAll",
+    "format:fix": "pretty-quick --staged",
+    "format:check": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.json,.css,.scss}\"",
+    "lint": "ng lint && npm run lint:styles",
+    "lint:styles:check": "stylelint-config-prettier-check",
+    "lint:styles": "stylelint \"src/app/**/*.scss\"",
+    "lint:ts:check": "tslint-config-prettier-check ./tslint.json",
+    "e2e": "ng e2e",
+    "compodoc": "./node_modules/.bin/compodoc -p ./tsconfig.json -d ./dist/docs --includes ./docs"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "9.0.6",
+    "@angular/common": "9.0.6",
+    "@angular/compiler": "9.0.6",
+    "@angular/core": "9.0.6",
+    "@angular/elements": "9.0.6",
+    "@angular/forms": "9.0.6",
+    "@angular/platform-browser": "9.0.6",
+    "@angular/platform-browser-dynamic": "9.0.6",
+    "@angular/router": "9.0.6",
+    "@ngrx/effects": "9.0.0",
+    "@ngrx/store": "9.0.0",
+    "@ngrx/store-devtools": "9.0.0",
+    "core-js": "3.6.4",
+    "rxjs": "6.5.4",
+    "safe-pipe": "0.3.0",
+    "tslib": "1.11.1",
+    "zone.js": "0.10.3"
+  },
+  "devDependencies": {
+    "@angular-builders/jest": "9.0.0",
+    "@angular-devkit/build-angular": "0.900.6",
+    "@angular/cli": "9.0.6",
+    "@angular/compiler-cli": "9.0.6",
+    "@angular/language-service": "9.0.6",
+    "@ngneat/spectator": "5.3.1",
+    "@types/jasmine": "3.5.9",
+    "@types/jasminewd2": "2.0.8",
+    "@types/jest": "25.1.4",
+    "codelyzer": "5.2.1",
+    "husky": "4.2.3",
+    "jasmine-core": "3.5.0",
+    "jasmine-spec-reporter": "4.2.1",
+    "jest": "25.1.0",
+    "jest-junit": "10.0.0",
+    "prettier": "1.19.1",
+    "pretty-quick": "2.0.1",
+    "protractor": "5.4.3",
+    "stylelint": "13.2.1",
+    "stylelint-config-prettier": "8.0.1",
+    "tslint-config-prettier": "1.18.0",
+    "ts-node": "8.6.2",
+    "tslint": "6.1.0",
+    "typescript": "3.7.5",
+    "@compodoc/compodoc": "1.1.11",
+    "commitizen": "4.0.3",
+    "@commitlint/cli": "8.2.0",
+    "@commitlint/config-conventional": "8.2.0",
+    "commitlint-config-cz": "0.13.0",
+    "cz-customizable": "6.2.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-customizable"
+    }
+  },
+  "cz-customizable": {
+    "config": "./.cz-config.js"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run format:fix && npm run lint && npm test"
+    }
+  }
+}
