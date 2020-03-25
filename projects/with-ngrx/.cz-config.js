@@ -27,7 +27,7 @@ module.exports = {
   scopes: [{ name: 'spa' }, { name: 'api' }],
 
   allowTicketNumber: true,
-  isTicketNumberRequired: true,
+  isTicketNumberRequired: false,
   ticketNumberPrefix: '#',
   ticketNumberRegExp: '\\d{1,6}',
 
