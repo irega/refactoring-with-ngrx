@@ -203,7 +203,7 @@ npm install -g cz-customizable
 }
 ```
 
-- .cz-config.js: This file is located in the git repository root path. It's used by cz-customizable to override the commitizen prompt options/messages.
+- .cz-config.js: This file is used by "cz-customizable" to customize the "commitizen" prompt options/messages. In addition, it's used by "commitlint" to customize the linting rules. This last task is done with the library "commitlint-config-cz".
 - commitlint.config.js: This file is used to specify the commit linting rules.
 
 To do a commit, we have two possibilities:
