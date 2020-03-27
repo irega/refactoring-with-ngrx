@@ -1,17 +1,15 @@
-import { AppComponent } from './app.component';
+import { HomePageComponent } from './home-page.component';
 import { Spectator, createComponentFactory } from '@ngneat/spectator';
-import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 
 const initialState = {
   questionGroyups: []
 };
 
-describe('The app component', () => {
-  let spectator: Spectator<AppComponent>;
+describe('The home page component', () => {
+  let spectator: Spectator<HomePageComponent>;
   const createComponent = createComponentFactory({
-    component: AppComponent,
-    imports: [RouterTestingModule],
+    component: HomePageComponent,
     providers: [provideMockStore({ initialState })]
   });
 

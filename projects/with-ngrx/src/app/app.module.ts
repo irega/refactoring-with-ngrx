@@ -13,6 +13,11 @@ import { initialize } from './app.initializer';
 import { SETTINGS, APP_SETTINGS } from './app.config';
 import { provideBootstrapEffects } from './app.bootstrap-effects';
 import { COMPONENTS, PROVIDERS } from './app.barrel';
+import { AppRoutingModule } from './app-routing.module';
+import { questionGroupsReducer } from './state/questionGroups/reducers';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { FakeApiService } from './services/fakeApi.service';
+import { QuestionGroupsEffects } from './state/questionGroups/effects/questionGroups-effects.service';
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -23,8 +28,11 @@ import { COMPONENTS, PROVIDERS } from './app.barrel';
     SafePipeModule,
     ReactiveFormsModule,
     FormsModule,
+    AppRoutingModule,
     StoreModule.forRoot(
-      {},
+      {
+        questionGroups: questionGroupsReducer
+      },
       {
         runtimeChecks: {
           strictStateImmutability: true,
@@ -35,7 +43,8 @@ import { COMPONENTS, PROVIDERS } from './app.barrel';
     StoreDevtoolsModule.instrument({
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    HttpClientInMemoryWebApiModule.forRoot(FakeApiService)
   ],
   providers: [
     ...PROVIDERS,
@@ -45,10 +54,8 @@ import { COMPONENTS, PROVIDERS } from './app.barrel';
       useFactory: initialize,
       multi: true
     },
-    provideBootstrapEffects([])
+    provideBootstrapEffects([QuestionGroupsEffects])
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-  constructor() {}
-}
+export class AppModule {}
