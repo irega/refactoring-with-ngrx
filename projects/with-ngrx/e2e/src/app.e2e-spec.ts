@@ -7,9 +7,8 @@ describe('The Questions Manager App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display the title', () => {
     page.navigateTo();
-    // TODO: Implement test.
-    expect(page.getParagraphText()).toEqual('');
+    expect(page.getTitleText()).toEqual('QUESTIONS MANAGER');
   });
 });

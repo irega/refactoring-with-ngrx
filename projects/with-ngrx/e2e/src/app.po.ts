@@ -5,8 +5,7 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    // TODO: Implement test.
-    return element(by.css('')).getText();
+  getTitleText() {
+    return element(by.css('.header__logo')).getText();
   }
 }
