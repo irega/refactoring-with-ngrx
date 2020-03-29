@@ -1,0 +1,72 @@
+<section [ngClass]="{ modal: params && params.show, shown: params && params.show }">
+  <div [ngClass]="{ dialog: true, show: params && params.show }">
+    <header>
+      <h1 [ngClass]="'popup-title'">{{ params && params.title }}</h1>
+      <p
+        [ngClass]="{
+          description: true,
+          descriptionSmall: params && params.descriptionSmall,
+          left: params && params.hasOwnProperty('input')
+        }"
+        [innerHTML]="params && params.description"
+      ></p>
+    </header>
+    <div class="dialog-content">
+      <input
+        type="text"
+        *ngIf="params && params.hasOwnProperty('input') && ![].constructor.isArray(params.input)"
+        placeholder="{{ params && params.inputPlaceholder }}"
+        [ngClass]="'input'"
+        [(ngModel)]="params.input"
+      />
+      <span
+        [ngClass]="['description', 'checkboxes']"
+        *ngIf="params && params.hasOwnProperty('input') && [].constructor.isArray(params.input)"
+      >
+        <label *ngFor="let item of params.input">
+          <input
+            type="checkbox"
+            name="item"
+            (change)="changeStatus(item, $event.target.checked)"
+            [attr.checked]="null"
+            value="item"
+          />{{ item }}
+        </label>
+      </span>
+      <div [ngClass]="'wrapper-create-edit'" *ngIf="params && params.createEdit">
+        <div [ngClass]="'wrapper-input'">
+          <label [ngClass]="'title-input'">{{ params && params.labelInputText && params.labelInputText.text }}</label>
+          <input type="text" [(ngModel)]="params.title" />
+        </div>
+      </div>
+    </div>
+    <div *ngIf="params && params.inputFile">
+      <input
+        type="file"
+        #fileInput
+        (change)="fileChange($event)"
+        accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+      />
+    </div>
+    <footer>
+      <button
+        id="customConfirmCancel"
+        *ngIf="params && params.cancel && !params.cancel.isHidden"
+        [attr.type]="'button'"
+        [ngClass]="['button', 'cancel']"
+        (click)="onCancelClicked()"
+      >
+        {{ params && params.ok && params.cancel.text }}
+      </button>
+      <button
+        id="customConfirmOk"
+        *ngIf="params && params.ok && !params.ok.isHidden"
+        [attr.type]="'button'"
+        [ngClass]="['button', 'ok', (params && params.ok && params && params.ok.type) || '']"
+        (click)="onOkClicked()"
+      >
+        {{ params && params.ok && params.ok.text }}
+      </button>
+    </footer>
+  </div>
+</section>

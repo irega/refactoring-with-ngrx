@@ -1,0 +1,14 @@
+<div class="menu-panel-container">
+  <button [ngClass]="'question-group-card-menu'" (click)="openMenuEvent()">
+    <img *ngIf="questionGroup && questionGroup.name" src="assets/images/puntos.svg" />
+  </button>
+  <ul *ngIf="openMenu" class="menu-panel">
+    <li class="menu-panel__item">
+      <a (click)="openModalEdit()">Edit</a>
+    </li>
+    <li class="menu-panel__item">
+      <a id="logoutSignOut" (click)="openModalDelete()">Delete</a>
+    </li>
+  </ul>
+  <a *ngIf="openMenu" class="panel-overlay" (click)="openMenuEvent()"></a>
+</div>

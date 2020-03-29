@@ -1,0 +1,39 @@
+$media-query-units: em !default;
+$browser-default-font-size: 16px !default;
+
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@function rem($value, $base-value: $browser-default-font-size) {
+    $value: strip-unit($value) / strip-unit($base-value) * 1rem;
+
+    @if ($value==0) {
+        $value: 0;
+    }
+    @return $value;
+}
+
+@function em($size) {
+    $size: if(str-index(#{$size}, 'rem'), rem($size, true), $size);
+    $unitless: strip-unit($size);
+    $unitless-base: strip-unit($browser-default-font-size);
+
+    @if $media-query-units==em {
+        @return $unitless / $unitless-base * 1em;
+    } @else {
+        @return $size;
+    }
+}
+
+@function sizer($multiplier: 1, $unit: 'rem') {
+    $unitless: $gutter;
+
+    @if ($unit== 'rem') {
+        @return rem($unitless) * $multiplier;
+    } @else if ($unit== 'em') {
+        @return em($unitless) * $multiplier;
+    } @else {
+        @return $unitless * $multiplier;
+    }
+}

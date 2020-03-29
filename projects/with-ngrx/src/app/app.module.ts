@@ -16,7 +16,7 @@ import { COMPONENTS, PROVIDERS } from './app.barrel';
 import { AppRoutingModule } from './app-routing.module';
 import { questionGroupsReducer } from './state/questionGroups/reducers';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { FakeApiService } from './services/fakeApi.service';
+import { FakeApiService } from './services/fake-api/fake-api.service';
 import { QuestionGroupsEffects } from './state/questionGroups/effects/questionGroups-effects.service';
 
 @NgModule({

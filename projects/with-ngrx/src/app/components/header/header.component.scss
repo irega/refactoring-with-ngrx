@@ -1,6 +1,5 @@
 @import 'utils.scss';
 
-$bc-tab: $c-gray-100;
 $bg-active: #f2f2f2;
 $bs-active: inset 0 0 4px 0 #ccc;
 $bc-negative: $c-bright;
@@ -29,7 +28,6 @@ $bc-negative: $c-bright;
         align-items: center;
         height: sizer(4.5);
         min-width: sizer(13.75);
-        border: 1px solid $bc-tab;
         color: $fc-input;
         font-size: fs(sm);
         text-transform: uppercase;

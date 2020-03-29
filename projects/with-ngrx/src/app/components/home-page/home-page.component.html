@@ -1,3 +1,30 @@
-<div *ngFor="let questionGroup of questionGroups$ | async">
-  {{ questionGroup.name }}
+<h1 [ngClass]="'view-title'">Your question groups</h1>
+<div [ngClass]="'question-group-card-container'">
+  <a [ngClass]="['question-group-card', 'question-group-card--new']" (click)="openModalCreateQuestionGroup()">
+    <div [ngClass]="'question-group-card__wrapper'">
+      <img
+        [ngClass]="['question-group-card__image', 'question-group-card__image--small']"
+        src="assets/images/new-question-group.svg"
+      />
+      <h2 [ngClass]="'question-group-card__title'">Create new question group</h2>
+    </div>
+  </a>
+  <div
+    [ngClass]="{ 'question-group-card': true, 'question-group-card--disabled': !questionGroup || !questionGroup.name }"
+    *ngFor="let questionGroup of questionGroups$ | async"
+  >
+    <app-question-group-actions-menu
+      [questionGroup]="questionGroup"
+      (edited)="editQuestionGroup($event)"
+      (deleted)="deleteQuestionGroup($event)"
+    ></app-question-group-actions-menu>
+    <a
+      [ngClass]="'question-group-card__wrapper'"
+      [routerLink]="['/question-group', questionGroup ? questionGroup.id : '']"
+    >
+      <h2 class="question-group-card__title" *ngIf="questionGroup && questionGroup.name">
+        {{ questionGroup.name }}
+      </h2>
+    </a>
+  </div>
 </div>

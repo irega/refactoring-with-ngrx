@@ -1,0 +1,170 @@
+@import 'utils.scss';
+
+$modal-dialog-background: rgba(242, 242, 242, 0.75);
+$modal-background: #fff;
+$modal-header-background: transparent;
+$modal-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+$modal-radius: 0;
+$modal-font-size: 16px;
+$modal-description-font-size: $modal-font-size;
+$modal-header-font-size: 36px;
+$modal-color: #4a4a4a;
+
+.modal {
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: $modal-dialog-background;
+    text-align: center;
+    z-index: 1000000;
+    font-size: 20px;
+    pointer-events: none;
+    @include centerY();
+
+    &.shown {
+        pointer-events: auto;
+    }
+}
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: $modal-background;
+    text-align: left;
+    padding: 60px 50px 30px 50px;
+    border-radius: $modal-radius;
+    box-shadow: $modal-shadow;
+    font-size: $modal-font-size;
+    transition: transform 0.3s;
+    transform: translateY(50%);
+    overflow: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    max-height: 80%;
+
+    &.show {
+        transform: translateY(0);
+    }
+
+    header {
+        font-weight: $font-weight-light;
+        font-size: $modal-header-font-size;
+        margin: 0 0 30px 0;
+        background-color: $modal-header-background;
+        color: $modal-color;
+        box-sizing: border-box;
+    }
+
+    .input,
+    .description {
+        font-size: $modal-description-font-size;
+        color: $modal-color;
+        position: relative;
+        max-width: $max-width-mobile;
+        line-height: 24px;
+    }
+
+    .description {
+        margin-bottom: 1.5rem;
+
+        &.descriptionSmall {
+            max-width: 20rem;
+        }
+    }
+
+    .description.left {
+        text-align: left;
+    }
+
+    .input {
+        width: calc(100% - 60px);
+    }
+
+    .checkboxes {
+        display: inline-block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 20px;
+        padding: 0;
+
+        label {
+            width: 100%;
+            display: block;
+            text-align: left;
+            padding: 10px 0;
+            border-bottom: 1px solid #999;
+            font-style: italic;
+
+            input {
+                margin-right: 10px;
+            }
+        }
+    }
+
+    ::ng-deep .description {
+        ul {
+            font-size: 18px;
+            text-align: left;
+            max-width: 550px;
+        }
+    }
+
+    .input {
+        margin-top: 20px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .wrapper-input {
+        margin-top: 1.5rem;
+
+        .title-input {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    footer {
+        padding: 40px 0 0 0;
+        display: flex;
+        justify-content: flex-end;
+
+        .button {
+            text-transform: uppercase;
+            margin-left: 10px;
+            background-color: transparent;
+
+            &.cancel {
+                color: $modal-color;
+                border-color: $modal-color;
+            }
+        }
+    }
+}
+
+@include media-breakpoint(xs) {
+    .dialog {
+        width: 100%;
+        height: 100%;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        right: 0;
+    }
+}
+
+.resume-text {
+    font-size: 14px;
+    &--highliht {
+        color: $main-color;
+        font-weight: $font-weight-bold;
+    }
+}

@@ -1,5 +1,16 @@
+$c-secondary: #0ae;
+
 $c-bright: #fff;
-$c-gray-100: #d8d8d8;
-$bg-secondary: $c-bright;
-$bs-header: 0 0 4px #ccc;
+$c-black: #000;
+
+$fc-secondary: $c-black;
+$fc-action: $c-secondary;
 $fc-input: #4a4a4a;
+$fc-menu: #4a4a4a;
+
+$bg-secondary: $c-bright;
+$bg-menu-active: #f2f2f2;
+
+$bs-header: 0 0 4px #ccc;
+$bs-card: 0 0 6px 0 #e3e3e3;
+$bs-panel: 0 0 15px 0 #ababab;

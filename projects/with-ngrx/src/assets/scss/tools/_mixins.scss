@@ -1,0 +1,27 @@
+@mixin media-breakpoint($name) {
+    @if map-has-key($breakpoints, $name) {
+        @media (max-width: em(map-get($breakpoints, $name))) {
+            @content;
+        }
+    } @else {
+        @warn "Unfortunately, no value could be retrieved from `#{$breakpoints}`. "+"Please make sure it is defined in `$breakpoints` map.";
+    }
+}
+
+@mixin centerY {
+    font-size: 0;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        width: 1px;
+        height: 100%;
+        margin-left: -1px;
+    }
+
+    & > * {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}

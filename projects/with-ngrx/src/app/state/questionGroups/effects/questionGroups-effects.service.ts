@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, catchError, exhaustMap } from 'rxjs/operators';
 import { QuestionGroupsActionTypes, loadSuccess } from '../actions';
 import { of } from 'rxjs';
-import { QuestionGroupsService } from 'src/app/services/questionGroups.service';
+import { QuestionGroupsService } from 'src/app/services/question-groups/question-groups.service';
 
 @Injectable()
 export class QuestionGroupsEffects {
