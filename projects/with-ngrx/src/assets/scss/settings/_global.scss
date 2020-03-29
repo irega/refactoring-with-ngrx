@@ -1,3 +1,14 @@
+$z-layers: (
+    modal-content: 9003,
+    modal-overlay: 9002,
+    super: 9000,
+    menu: 902,
+    menu-overlay: 901,
+    above: 900,
+    default: 1,
+    below: -1
+);
+
 $breakpoints: (
     lg: 1366px,
     md: 1280px,

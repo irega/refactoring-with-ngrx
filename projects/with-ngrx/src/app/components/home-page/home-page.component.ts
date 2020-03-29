@@ -24,13 +24,13 @@ export class HomePageComponent implements OnInit {
 
   openModalCreateQuestionGroup() {
     this.customModalService.show({
-      title: 'title',
-      description: 'description',
+      title: 'Create new question group',
+      description: 'Choose a name for the new question group',
       descriptionSmall: true,
       createEdit: true,
-      labelInputText: { text: 'label' },
-      ok: { text: 'ok' },
-      cancel: { text: 'cancel' }
+      labelInputText: { text: 'Name' },
+      ok: { text: 'Create' },
+      cancel: { text: 'Cancel' }
     });
     const subscription = this.customModalService.stateChange.subscribe(({ confirmed }) => {
       subscription.unsubscribe();

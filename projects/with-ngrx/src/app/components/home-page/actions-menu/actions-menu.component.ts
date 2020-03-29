@@ -26,12 +26,12 @@ export class ActionsMenuComponent {
   openModalEdit() {
     this.customModalService.show({
       title: this.questionGroup.name,
-      description: 'description',
+      description: 'Modify the name of this question group',
       descriptionSmall: true,
       createEdit: true,
-      labelInputText: { text: 'label' },
-      ok: { text: 'ok' },
-      cancel: { text: 'cancel' }
+      labelInputText: { text: 'Name' },
+      ok: { text: 'Edit' },
+      cancel: { text: 'Cancel' }
     });
     const subscription = this.customModalService.stateChange.subscribe(({ confirmed, title, icon }) => {
       subscription.unsubscribe();
@@ -44,10 +44,10 @@ export class ActionsMenuComponent {
 
   openModalDelete(): void {
     this.customModalService.show({
-      title: 'title',
-      description: 'description',
-      ok: { text: 'ok' },
-      cancel: { text: 'cancel' }
+      title: 'Delete a question group',
+      description: 'Are you sure you want to delete this question group?',
+      ok: { text: 'Yes' },
+      cancel: { text: 'No' }
     });
     const subscription = this.customModalService.stateChange.subscribe(({ confirmed }) => {
       subscription.unsubscribe();

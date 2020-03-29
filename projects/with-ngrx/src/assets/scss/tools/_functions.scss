@@ -26,6 +26,10 @@ $browser-default-font-size: 16px !default;
     }
 }
 
+@function z($layer) {
+    @return map-get($z-layers, $layer);
+}
+
 @function sizer($multiplier: 1, $unit: 'rem') {
     $unitless: $gutter;
 
