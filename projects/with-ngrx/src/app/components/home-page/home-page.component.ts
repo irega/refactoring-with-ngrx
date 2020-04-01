@@ -32,20 +32,20 @@ export class HomePageComponent implements OnInit {
       ok: { text: 'Create' },
       cancel: { text: 'Cancel' }
     });
-    const subscription = this.customModalService.stateChange.subscribe(({ confirmed }) => {
+    const subscription = this.customModalService.stateChange.subscribe(({ confirmed, title }) => {
       subscription.unsubscribe();
       if (!confirmed) {
         return;
       }
-      // this.store.dispatch({ type: QuestionGroupsActionTypes.CREATE, payload: { name: title } });
+      this.store.dispatch({ type: QuestionGroupsActionTypes.CREATE, payload: { name: title } });
     });
   }
 
-  editQuestionGroup() {
-    // this.store.dispatch({ type: QuestionGroupsActionTypes.EDIT, payload: { questionGroup } });
+  editQuestionGroup(questionGroup: any) {
+    this.store.dispatch({ type: QuestionGroupsActionTypes.EDIT, payload: { questionGroup } });
   }
 
-  deleteQuestionGroup() {
-    // this.store.dispatch({ type: QuestionGroupsActionTypes.DELETE, payload: { questionGroupId } });
+  deleteQuestionGroup(questionGroupId: number) {
+    this.store.dispatch({ type: QuestionGroupsActionTypes.DELETE, payload: { questionGroupId } });
   }
 }
