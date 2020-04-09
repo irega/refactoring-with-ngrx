@@ -1,4 +1,4 @@
-<section [ngClass]="{ modal: params && params.show, shown: params && params.show }">
+<section *ngIf="params && params.show" [ngClass]="{ modal: params && params.show, shown: params && params.show }">
   <div [ngClass]="{ dialog: true, show: params && params.show }">
     <header>
       <h1 [ngClass]="'popup-title'">{{ params && params.title }}</h1>

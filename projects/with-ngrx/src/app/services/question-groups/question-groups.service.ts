@@ -13,6 +13,10 @@ export class QuestionGroupsService {
     return this.http.get('api/questionGroups');
   }
 
+  get(questionGroupId: number): Observable<any> {
+    return this.http.get(`api/questionGroups/${questionGroupId}`);
+  }
+
   create(questionGroup: any): Observable<any> {
     return this.http.post('api/questionGroups', questionGroup);
   }

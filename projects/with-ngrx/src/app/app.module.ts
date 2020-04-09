@@ -18,6 +18,8 @@ import { questionGroupsReducer } from './state/questionGroups/reducers';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { FakeApiService } from './services/fake-api/fake-api.service';
 import { QuestionGroupsEffects } from './state/questionGroups/effects/questionGroups-effects.service';
+import { questionsReducer } from './state/questions/reducers';
+import { currentQuestionGroupReducer } from './state/currentQuestionGroup/reducers';
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -31,7 +33,9 @@ import { QuestionGroupsEffects } from './state/questionGroups/effects/questionGr
     AppRoutingModule,
     StoreModule.forRoot(
       {
-        questionGroups: questionGroupsReducer
+        questionGroups: questionGroupsReducer,
+        questions: questionsReducer,
+        currentQuestionGroup: currentQuestionGroupReducer
       },
       {
         runtimeChecks: {

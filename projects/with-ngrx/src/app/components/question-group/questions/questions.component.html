@@ -1,0 +1,20 @@
+<form>
+  <section class="section-card" *ngFor="let item of questions$ | async; let i = index">
+    <div class="two-columns-grid">
+      <div class="question-container">
+        <h3 class="section-card__title">QUESTION</h3>
+        <div class="question-row">
+          <div id="questionWrapper-{{ i }}" class="question-input-wrapper">
+            <input
+              id="questionInput-{{ i }}"
+              type="text"
+              value="{{ item.text }}"
+              [attr.data-item-id]="item.id"
+              class="question-input"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
