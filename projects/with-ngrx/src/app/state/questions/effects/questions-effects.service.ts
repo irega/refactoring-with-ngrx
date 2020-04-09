@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, catchError, withLatestFrom, concatMap, switchMap, exhaustMap } from 'rxjs/operators';
-import { QuestionsActionTypes, createSuccess, create, editSuccess } from '../actions';
-import { of } from 'rxjs';
+import { QuestionsActionTypes, createSuccess, create, editSuccess, deleteQuestionSuccess } from '../actions';
+import { of, forkJoin } from 'rxjs';
 import { State } from '../../definition';
 import { Store } from '@ngrx/store';
 import * as fromCurrentQuestionGroup from '../../currentQuestionGroup/selectors';
@@ -42,6 +42,19 @@ export class QuestionsEffects {
       map(question => editSuccess({ payload: { question } })),
       catchError(() => {
         return of({ type: QuestionsActionTypes.EDIT_ERROR });
+      })
+    )
+  );
+
+  deleteQuestion$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(QuestionsActionTypes.DELETE),
+      exhaustMap((action: { payload: { questionId: number } }) =>
+        forkJoin([of(action.payload.questionId), this.questionsService.delete(action.payload.questionId)])
+      ),
+      map(result => deleteQuestionSuccess({ payload: { questionId: result[0] } })),
+      catchError(() => {
+        return of({ type: QuestionsActionTypes.DELETE_ERROR });
       })
     )
   );

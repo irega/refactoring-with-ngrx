@@ -8,7 +8,10 @@ export enum QuestionsActionTypes {
   CREATE_ERROR = '[Questions] Create Error',
   EDIT = '[Questions] Edit',
   EDIT_SUCCESS = '[Questions] Edit Success',
-  EDIT_ERROR = '[Questions] Edit Error'
+  EDIT_ERROR = '[Questions] Edit Error',
+  DELETE = '[Questions] Delete',
+  DELETE_SUCCESS = '[Questions] Delete Success',
+  DELETE_ERROR = '[Questions] Delete Error'
 }
 
 export const load = createAction(QuestionsActionTypes.LOAD, props<{ payload: { questions: Question[] } }>());
@@ -24,3 +27,9 @@ export const editSuccess = createAction(
   props<{ payload: { question: Question } }>()
 );
 export const editError = createAction(QuestionsActionTypes.EDIT_ERROR);
+export const deleteQuestion = createAction(QuestionsActionTypes.DELETE, props<{ payload: { questionId: number } }>());
+export const deleteQuestionSuccess = createAction(
+  QuestionsActionTypes.DELETE_SUCCESS,
+  props<{ payload: { questionId: number } }>()
+);
+export const deleteQuestionError = createAction(QuestionsActionTypes.DELETE_ERROR);

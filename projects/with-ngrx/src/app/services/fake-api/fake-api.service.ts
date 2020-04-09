@@ -18,7 +18,7 @@ export class FakeApiService implements InMemoryDbService {
         id: 2,
         name: 'Question Group 2',
         questions: [
-          { id: 1, questionGroupId: 1, text: 'A question', answers: [{ id: 1, questionGroupId: 1, text: 'An answer' }] }
+          { id: 2, questionGroupId: 2, text: 'A question', answers: [{ id: 2, questionGroupId: 2, text: 'An answer' }] }
         ]
       }
     ];

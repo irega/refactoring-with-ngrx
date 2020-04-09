@@ -14,6 +14,12 @@
               (focusout)="updateQuestion(13, item, $event.target.value)"
               (keyup)="updateQuestion($event.keyCode, item, $event.target.value)"
             />
+            <button
+              id="questionDelete-{{ i }}"
+              type="button"
+              class="question-button delete logo"
+              (click)="deleteQuestion(item.id)"
+            ></button>
           </div>
         </div>
       </div>
