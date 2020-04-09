@@ -27,4 +27,22 @@ export class QuestionsService {
       })
     );
   }
+
+  update(question: Question): Observable<any> {
+    return from(
+      new Promise(resolve => {
+        this.http
+          .get(`api/questionGroups/${question.questionGroupId}`)
+          .toPromise()
+          .then((questionGroup: any) => {
+            const questionToUpdateIndex = questionGroup.questions.findIndex(q => q.id === question.id);
+            questionGroup.questions[questionToUpdateIndex] = question;
+            this.http
+              .put(`api/questionGroups/${questionGroup.id}`, questionGroup)
+              .toPromise()
+              .then(() => resolve(question));
+          });
+      })
+    );
+  }
 }

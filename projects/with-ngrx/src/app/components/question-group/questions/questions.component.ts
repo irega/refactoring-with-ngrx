@@ -16,6 +16,14 @@ export class QuestionsComponent {
 
   constructor(private store: Store<State>) {}
 
+  updateQuestion(keyCode: number, question: Question, text: string): void {
+    if (keyCode !== 13) {
+      return;
+    }
+    const questionToUpdate = Object.assign({}, question, { text });
+    this.store.dispatch({ type: QuestionsActionTypes.EDIT, payload: { question: questionToUpdate } });
+  }
+
   addQuestion(keyCode: number): void {
     if (keyCode !== 13) {
       return;

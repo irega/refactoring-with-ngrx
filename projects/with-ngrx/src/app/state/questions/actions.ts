@@ -5,7 +5,10 @@ export enum QuestionsActionTypes {
   LOAD = '[Questions] Load',
   CREATE = '[Questions] Create',
   CREATE_SUCCESS = '[Questions] Create Success',
-  CREATE_ERROR = '[Questions] Create Error'
+  CREATE_ERROR = '[Questions] Create Error',
+  EDIT = '[Questions] Edit',
+  EDIT_SUCCESS = '[Questions] Edit Success',
+  EDIT_ERROR = '[Questions] Edit Error'
 }
 
 export const load = createAction(QuestionsActionTypes.LOAD, props<{ payload: { questions: Question[] } }>());
@@ -15,3 +18,9 @@ export const createSuccess = createAction(
   props<{ payload: { question: Question } }>()
 );
 export const createError = createAction(QuestionsActionTypes.CREATE_ERROR);
+export const edit = createAction(QuestionsActionTypes.EDIT, props<{ payload: { question: Question } }>());
+export const editSuccess = createAction(
+  QuestionsActionTypes.EDIT_SUCCESS,
+  props<{ payload: { question: Question } }>()
+);
+export const editError = createAction(QuestionsActionTypes.EDIT_ERROR);

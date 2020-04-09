@@ -11,6 +11,8 @@
               value="{{ item.text }}"
               [attr.data-item-id]="item.id"
               class="question-input"
+              (focusout)="updateQuestion(13, item, $event.target.value)"
+              (keyup)="updateQuestion($event.keyCode, item, $event.target.value)"
             />
           </div>
         </div>

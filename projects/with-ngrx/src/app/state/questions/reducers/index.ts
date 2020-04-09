@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { load, create, createSuccess, createError } from '../actions';
+import { load, create, createSuccess, createError, edit, editSuccess, editError } from '../actions';
 import { LOAD } from './load';
 import { CREATE, CREATE_ERROR, CREATE_SUCCESS } from '../reducers/create';
+import { EDIT, EDIT_SUCCESS, EDIT_ERROR } from './edit';
 
 const initialState = [];
 
@@ -10,7 +11,10 @@ const _questionsReducer = createReducer(
   on(load, LOAD),
   on(create, CREATE),
   on(createSuccess, CREATE_SUCCESS),
-  on(createError, CREATE_ERROR)
+  on(createError, CREATE_ERROR),
+  on(edit, EDIT),
+  on(editSuccess, EDIT_SUCCESS),
+  on(editError, EDIT_ERROR)
 );
 
 export function questionsReducer(state, action) {
