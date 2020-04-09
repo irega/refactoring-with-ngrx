@@ -34,9 +34,9 @@ export const editSuccess = createAction(
   props<{ questionGroup: QuestionGroup }>()
 );
 export const editError = createAction(QuestionGroupsActionTypes.EDIT_ERROR);
-export const deleteQuestionGroup = createAction(QuestionGroupsActionTypes.DELETE, props<{ questionGroupId: string }>());
+export const deleteQuestionGroup = createAction(QuestionGroupsActionTypes.DELETE, props<{ questionGroupId: number }>());
 export const deleteQuestionGroupSuccess = createAction(
   QuestionGroupsActionTypes.DELETE_SUCCESS,
-  props<{ questionGroupId: string }>()
+  props<{ questionGroupId: number }>()
 );
 export const deleteQuestionGroupError = createAction(QuestionGroupsActionTypes.DELETE_ERROR);

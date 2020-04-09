@@ -30,7 +30,9 @@ export class QuestionGroupsEffects {
   createQuestionGroup$ = createEffect(() =>
     this.actions$.pipe(
       ofType(QuestionGroupsActionTypes.CREATE),
-      exhaustMap((action: { payload: { name: string } }) => this.questionGroupsService.create(action.payload)),
+      exhaustMap((action: { payload: { id: number; name: string } }) =>
+        this.questionGroupsService.create(action.payload)
+      ),
       map(questionGroup => createSuccess({ questionGroup })),
       catchError(() => {
         return of({ type: QuestionGroupsActionTypes.CREATE_ERROR });
@@ -54,7 +56,7 @@ export class QuestionGroupsEffects {
   deleteQuestionGroup$ = createEffect(() =>
     this.actions$.pipe(
       ofType(QuestionGroupsActionTypes.DELETE),
-      exhaustMap((action: { payload: { questionGroupId: string } }) =>
+      exhaustMap((action: { payload: { questionGroupId: number } }) =>
         forkJoin([
           of(action.payload.questionGroupId),
           this.questionGroupsService.delete(action.payload.questionGroupId)

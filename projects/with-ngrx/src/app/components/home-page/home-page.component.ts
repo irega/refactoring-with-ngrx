@@ -37,7 +37,7 @@ export class HomePageComponent implements OnInit {
       if (!confirmed) {
         return;
       }
-      this.store.dispatch({ type: QuestionGroupsActionTypes.CREATE, payload: { name: title } });
+      this.store.dispatch({ type: QuestionGroupsActionTypes.CREATE, payload: { id: null, name: title } });
     });
   }
 

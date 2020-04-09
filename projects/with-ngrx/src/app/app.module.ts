@@ -20,6 +20,7 @@ import { FakeApiService } from './services/fake-api/fake-api.service';
 import { QuestionGroupsEffects } from './state/questionGroups/effects/questionGroups-effects.service';
 import { questionsReducer } from './state/questions/reducers';
 import { currentQuestionGroupReducer } from './state/currentQuestionGroup/reducers';
+import { QuestionsEffects } from './state/questions/effects/questions-effects.service';
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -58,7 +59,7 @@ import { currentQuestionGroupReducer } from './state/currentQuestionGroup/reduce
       useFactory: initialize,
       multi: true
     },
-    provideBootstrapEffects([QuestionGroupsEffects])
+    provideBootstrapEffects([QuestionGroupsEffects, QuestionsEffects])
   ],
   bootstrap: [AppComponent]
 })

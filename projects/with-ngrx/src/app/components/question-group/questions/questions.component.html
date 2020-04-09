@@ -17,4 +17,19 @@
       </div>
     </div>
   </section>
+
+  <section class="section-card">
+    <div class="two-columns-grid">
+      <div class="question-input-wrapper">
+        <input
+          id="questionInput"
+          class="question-input add-question"
+          type="text"
+          (keyup)="addQuestion($event.keyCode)"
+          [(ngModel)]="questionToAddText"
+          name="questionToAddText"
+        />
+      </div>
+    </div>
+  </section>
 </form>
