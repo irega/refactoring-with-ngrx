@@ -4,6 +4,9 @@
       <div class="question-container">
         <h3 class="section-card__title">QUESTION</h3>
         <div class="question-row">
+          <span class="question-row__chevron-expand" (click)="toggleQuestion(item.id)">
+            >
+          </span>
           <div id="questionWrapper-{{ i }}" class="question-input-wrapper">
             <input
               id="questionInput-{{ i }}"
@@ -21,6 +24,11 @@
               (click)="deleteQuestion(item.id)"
             ></button>
           </div>
+        </div>
+      </div>
+      <div class="question-container">
+        <div class="question-wrapper">
+          <app-answers *ngIf="item.isOpened" [answers]="answers"> </app-answers>
         </div>
       </div>
     </div>

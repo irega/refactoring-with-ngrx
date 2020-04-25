@@ -1,21 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { State } from 'src/app/state/definition';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Question } from 'src/app/state/questions/entities';
 import { selectQuestions } from 'src/app/state/questions/selectors';
 import { QuestionsActionTypes } from 'src/app/state/questions/actions';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
+import { selectAnswers } from 'src/app/state/answers/selectors';
+import { Answer } from 'src/app/state/answers/entities';
 
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html'
 })
-export class QuestionsComponent {
+export class QuestionsComponent implements OnInit, OnDestroy {
   questionToAddText = '';
   questions$: Observable<Question[]> = this.store.select(selectQuestions);
+  answers$: Observable<Answer[]> = this.store.select(selectAnswers);
+  answers: Answer[];
+
+  private answersSubscription: Subscription;
 
   constructor(private store: Store<State>, private customModalService: CustomModalService) {}
+
+  ngOnInit() {
+    this.answersSubscription = this.answers$.subscribe(answers => (this.answers = answers));
+  }
+
+  ngOnDestroy() {
+    this.answersSubscription.unsubscribe();
+  }
 
   updateQuestion(keyCode: number, question: Question, text: string): void {
     if (keyCode !== 13) {
@@ -46,5 +60,9 @@ export class QuestionsComponent {
         this.store.dispatch({ type: QuestionsActionTypes.DELETE, payload: { questionId } });
       }
     });
+  }
+
+  toggleQuestion(questionId: number) {
+    this.store.dispatch({ type: QuestionsActionTypes.TOGGLE, payload: { questionId } });
   }
 }

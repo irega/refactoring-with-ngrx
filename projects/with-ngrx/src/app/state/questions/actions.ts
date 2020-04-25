@@ -11,7 +11,10 @@ export enum QuestionsActionTypes {
   EDIT_ERROR = '[Questions] Edit Error',
   DELETE = '[Questions] Delete',
   DELETE_SUCCESS = '[Questions] Delete Success',
-  DELETE_ERROR = '[Questions] Delete Error'
+  DELETE_ERROR = '[Questions] Delete Error',
+  TOGGLE = '[Questions] Toggle',
+  TOGGLE_SUCCESS = '[Questions] Toggle Success',
+  TOGGLE_ERROR = '[Questions] Toggle Error'
 }
 
 export const load = createAction(QuestionsActionTypes.LOAD, props<{ payload: { questions: Question[] } }>());
@@ -33,3 +36,9 @@ export const deleteQuestionSuccess = createAction(
   props<{ payload: { questionId: number } }>()
 );
 export const deleteQuestionError = createAction(QuestionsActionTypes.DELETE_ERROR);
+export const toggle = createAction(QuestionsActionTypes.TOGGLE, props<{ payload: { questionId: number } }>());
+export const toggleSuccess = createAction(
+  QuestionsActionTypes.TOGGLE_SUCCESS,
+  props<{ payload: { questionId: number } }>()
+);
+export const toggleError = createAction(QuestionsActionTypes.TOGGLE_ERROR);

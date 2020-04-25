@@ -9,12 +9,16 @@ import {
   editError,
   deleteQuestion,
   deleteQuestionSuccess,
-  deleteQuestionError
+  deleteQuestionError,
+  toggle,
+  toggleError,
+  toggleSuccess
 } from '../actions';
 import { LOAD } from './load';
 import { CREATE, CREATE_ERROR, CREATE_SUCCESS } from '../reducers/create';
 import { EDIT, EDIT_SUCCESS, EDIT_ERROR } from './edit';
 import { DELETE_SUCCESS, DELETE, DELETE_ERROR } from './delete';
+import { TOGGLE, TOGGLE_SUCCESS, TOGGLE_ERROR } from './toggle';
 
 const initialState = [];
 
@@ -29,7 +33,10 @@ const _questionsReducer = createReducer(
   on(editError, EDIT_ERROR),
   on(deleteQuestion, DELETE),
   on(deleteQuestionSuccess, DELETE_SUCCESS),
-  on(deleteQuestionError, DELETE_ERROR)
+  on(deleteQuestionError, DELETE_ERROR),
+  on(toggle, TOGGLE),
+  on(toggleSuccess, TOGGLE_SUCCESS),
+  on(toggleError, TOGGLE_ERROR)
 );
 
 export function questionsReducer(state, action) {

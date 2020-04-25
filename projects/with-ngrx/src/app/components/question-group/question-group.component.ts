@@ -57,7 +57,8 @@ export class QuestionGroupComponent implements OnInit, OnDestroy {
         questions: questions.map(({ id, questionGroupId, text }) => ({
           id,
           questionGroupId,
-          text
+          text,
+          isOpened: false
         }))
       }
     });

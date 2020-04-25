@@ -21,6 +21,7 @@ import { QuestionGroupsEffects } from './state/questionGroups/effects/questionGr
 import { questionsReducer } from './state/questions/reducers';
 import { currentQuestionGroupReducer } from './state/currentQuestionGroup/reducers';
 import { QuestionsEffects } from './state/questions/effects/questions-effects.service';
+import { answersReducer } from './state/answers/reducers';
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -36,7 +37,8 @@ import { QuestionsEffects } from './state/questions/effects/questions-effects.se
       {
         questionGroups: questionGroupsReducer,
         questions: questionsReducer,
-        currentQuestionGroup: currentQuestionGroupReducer
+        currentQuestionGroup: currentQuestionGroupReducer,
+        answers: answersReducer
       },
       {
         runtimeChecks: {
