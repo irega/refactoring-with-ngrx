@@ -16,17 +16,16 @@ export class QuestionsService {
           .get(`api/questionGroups`)
           .toPromise()
           .then((allQuestionGroups: any) => {
-            const allQuestionIds: number[] = allQuestionGroups.reduce((prev, current) => {
-              return [...prev.questions.map(q => q.id), ...current.questions.map(q => q.id)];
-            });
+            const allQuestionIds = [];
+            allQuestionGroups.forEach(qg => qg.questions.forEach(q => allQuestionIds.push(q.id)));
             const maxQuestionId = Math.max(...allQuestionIds);
-            const questionToCreate = { ...question, id: maxQuestionId + 1 };
+            const questionToCreate = { ...question, id: maxQuestionId + 1, answers: [] };
             const questionGroup = allQuestionGroups.find(qg => qg.id === question.questionGroupId);
             questionGroup.questions.push(questionToCreate);
             this.http
               .put(`api/questionGroups/${questionGroup.id}`, questionGroup)
               .toPromise()
-              .then(() => resolve(question));
+              .then(() => resolve(questionToCreate));
           });
       })
     );

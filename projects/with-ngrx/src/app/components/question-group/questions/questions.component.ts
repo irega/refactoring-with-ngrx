@@ -8,6 +8,7 @@ import { QuestionsActionTypes } from 'src/app/state/questions/actions';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
 import { selectAnswers } from 'src/app/state/answers/selectors';
 import { Answer } from 'src/app/state/answers/entities';
+import { AnswersActionTypes } from 'src/app/state/answers/actions';
 
 @Component({
   selector: 'app-questions',
@@ -64,5 +65,9 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
   toggleQuestion(questionId: number) {
     this.store.dispatch({ type: QuestionsActionTypes.TOGGLE, payload: { questionId } });
+  }
+
+  addAnswer(answer: Answer) {
+    this.store.dispatch({ type: AnswersActionTypes.CREATE, payload: { answer } });
   }
 }

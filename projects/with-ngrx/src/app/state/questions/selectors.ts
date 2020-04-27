@@ -8,3 +8,7 @@ export const selectQuestions = createSelector(selectState, (state: State) => sta
 export const selectQuestionById = createSelector(selectQuestions, (questions: Question[], props: { id: number }) => {
   return questions.find(q => q.id === props.id);
 });
+
+export const selectOpenedQuestion = createSelector(selectQuestions, (questions: Question[]) => {
+  return questions.find(q => q.isOpened);
+});

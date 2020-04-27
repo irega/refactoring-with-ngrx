@@ -22,6 +22,7 @@ import { questionsReducer } from './state/questions/reducers';
 import { currentQuestionGroupReducer } from './state/currentQuestionGroup/reducers';
 import { QuestionsEffects } from './state/questions/effects/questions-effects.service';
 import { answersReducer } from './state/answers/reducers';
+import { AnswersEffects } from './state/answers/effects/answers-effects.service';
 
 @NgModule({
   declarations: [...COMPONENTS],
@@ -61,7 +62,7 @@ import { answersReducer } from './state/answers/reducers';
       useFactory: initialize,
       multi: true
     },
-    provideBootstrapEffects([QuestionGroupsEffects, QuestionsEffects])
+    provideBootstrapEffects([QuestionGroupsEffects, QuestionsEffects, AnswersEffects])
   ],
   bootstrap: [AppComponent]
 })
