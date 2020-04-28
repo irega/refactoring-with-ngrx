@@ -1,5 +1,11 @@
 <div *ngFor="let item of answers; let i = index">
-  {{ item.text }}
+  <input
+    type="text"
+    value="{{ item.text }}"
+    (focusout)="updateAnswer(13, item, $event.target.value)"
+    (keyup)="updateAnswer($event.keyCode, item, $event.target.value)"
+  />
+  <button type="button" (click)="deleteAnswer(item.id)"></button>
 </div>
 
 <input type="text" (keyup)="addAnswer($event.keyCode)" [(ngModel)]="answerToAddText" name="answerToAddText" />

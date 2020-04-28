@@ -9,6 +9,8 @@ import { Answer } from 'src/app/state/answers/entities';
 export class AnswersComponent {
   @Input() answers: Answer[];
   @Output() add = new EventEmitter<{ text: string }>();
+  @Output() edit = new EventEmitter<Answer>();
+  @Output() delete = new EventEmitter<number>();
   answerToAddText = '';
 
   addAnswer(keyCode: number): void {
@@ -18,5 +20,17 @@ export class AnswersComponent {
 
     this.add.emit({ text: this.answerToAddText });
     this.answerToAddText = '';
+  }
+
+  updateAnswer(keyCode: number, answer: Answer, text: string): void {
+    if (keyCode !== 13) {
+      return;
+    }
+    const answerToUpdate = Object.assign({}, answer, { text });
+    this.edit.emit(answerToUpdate);
+  }
+
+  deleteAnswer(answerId: number) {
+    this.delete.emit(answerId);
   }
 }

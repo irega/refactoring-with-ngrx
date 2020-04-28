@@ -70,4 +70,12 @@ export class QuestionsComponent implements OnInit, OnDestroy {
   addAnswer(answer: Answer) {
     this.store.dispatch({ type: AnswersActionTypes.CREATE, payload: { answer } });
   }
+
+  editAnswer(answer: Answer) {
+    this.store.dispatch({ type: AnswersActionTypes.EDIT, payload: { answer } });
+  }
+
+  deleteAnswer(answerId: number): void {
+    this.store.dispatch({ type: AnswersActionTypes.DELETE, payload: { answerId } });
+  }
 }

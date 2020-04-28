@@ -1,13 +1,21 @@
-import { AnswersActionTypes, createSuccess, create } from 'src/app/state/answers/actions';
+import {
+  AnswersActionTypes,
+  createSuccess,
+  create,
+  deleteAnswer,
+  deleteAnswerSuccess,
+  editSuccess
+} from 'src/app/state/answers/actions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { map, catchError, concatMap, withLatestFrom, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { map, catchError, concatMap, withLatestFrom, switchMap, exhaustMap } from 'rxjs/operators';
+import { of, forkJoin } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from '../../definition';
 import * as fromCurrentQuestionGroup from '../../currentQuestionGroup/selectors';
 import { AnswersService } from 'src/app/services/answers/answers.service';
 import { selectOpenedQuestion } from '../../questions/selectors';
+import { Answer } from '../entities';
 
 @Injectable()
 export class AnswersEffects {
@@ -35,6 +43,30 @@ export class AnswersEffects {
       map(answer => createSuccess({ payload: { answer } })),
       catchError(() => {
         return of({ type: AnswersActionTypes.CREATE_ERROR });
+      })
+    )
+  );
+
+  editAnswer$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AnswersActionTypes.EDIT),
+      exhaustMap((action: { payload: { answer: Answer } }) => this.answersService.update(action.payload.answer)),
+      map(answer => editSuccess({ payload: { answer } })),
+      catchError(() => {
+        return of({ type: AnswersActionTypes.EDIT_ERROR });
+      })
+    )
+  );
+
+  deleteAnswer$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(deleteAnswer),
+      exhaustMap((action: { payload: { answerId: number } }) =>
+        forkJoin([of(action.payload.answerId), this.answersService.delete(action.payload.answerId)])
+      ),
+      map(result => deleteAnswerSuccess({ payload: { answerId: result[0] } })),
+      catchError(() => {
+        return of({ type: AnswersActionTypes.DELETE_ERROR });
       })
     )
   );

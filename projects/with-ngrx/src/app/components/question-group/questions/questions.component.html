@@ -28,7 +28,14 @@
       </div>
       <div class="question-container">
         <div class="question-wrapper">
-          <app-answers *ngIf="item.isOpened" [answers]="answers" (add)="addAnswer($event)"> </app-answers>
+          <app-answers
+            *ngIf="item.isOpened"
+            [answers]="answers"
+            (add)="addAnswer($event)"
+            (edit)="editAnswer($event)"
+            (delete)="deleteAnswer($event)"
+          >
+          </app-answers>
         </div>
       </div>
     </div>

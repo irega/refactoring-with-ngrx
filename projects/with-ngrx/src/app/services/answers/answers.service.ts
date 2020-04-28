@@ -48,4 +48,47 @@ export class AnswersService {
       })
     );
   }
+
+  update(answer: Answer): Observable<any> {
+    return from(
+      new Promise(resolve => {
+        this.http
+          .get(`api/questionGroups/${answer.questionGroupId}`)
+          .toPromise()
+          .then((questionGroup: any) => {
+            const question = questionGroup.questions.find(q => q.id === answer.questionId);
+            const answerToUpdateIndex = question.answers.findIndex(a => a.id === answer.id);
+            question.answers[answerToUpdateIndex] = answer;
+            this.http
+              .put(`api/questionGroups/${questionGroup.id}`, questionGroup)
+              .toPromise()
+              .then(() => resolve(answer));
+          });
+      })
+    );
+  }
+
+  delete(answerId: number): Observable<any> {
+    return from(
+      new Promise(resolve => {
+        this.http
+          .get(`api/questionGroups`)
+          .toPromise()
+          .then((allQuestionGroups: any) => {
+            const questionGroupWithAnswerToDelete = allQuestionGroups.find(
+              qg => qg.questions.find(q => q.answers.find(a => a.id === answerId) !== undefined) !== undefined
+            );
+            const questionWithAnswerToDelete = questionGroupWithAnswerToDelete.questions.find(
+              q => q.answers.find(a => a.id === answerId) !== undefined
+            );
+            const answerToDeleteIndex = questionWithAnswerToDelete.answers.findIndex(a => a.id === answerId);
+            questionWithAnswerToDelete.answers.splice(answerToDeleteIndex, 1);
+            this.http
+              .put(`api/questionGroups/${questionGroupWithAnswerToDelete.id}`, questionGroupWithAnswerToDelete)
+              .toPromise()
+              .then(() => resolve());
+          });
+      })
+    );
+  }
 }
