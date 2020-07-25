@@ -1,18 +1,19 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/state/definition';
 import { Observable, Subscription } from 'rxjs';
+import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
+import { AnswersActionTypes } from 'src/app/state/answers/actions';
+import { Answer } from 'src/app/state/answers/entities';
+import { selectAnswers } from 'src/app/state/answers/selectors';
+import { State } from 'src/app/state/definition';
+import { QuestionsActionTypes } from 'src/app/state/questions/actions';
 import { Question } from 'src/app/state/questions/entities';
 import { selectQuestions } from 'src/app/state/questions/selectors';
-import { QuestionsActionTypes } from 'src/app/state/questions/actions';
-import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
-import { selectAnswers } from 'src/app/state/answers/selectors';
-import { Answer } from 'src/app/state/answers/entities';
-import { AnswersActionTypes } from 'src/app/state/answers/actions';
 
 @Component({
   selector: 'app-questions',
-  templateUrl: './questions.component.html'
+  templateUrl: './questions.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuestionsComponent implements OnInit, OnDestroy {
   questionToAddText = '';

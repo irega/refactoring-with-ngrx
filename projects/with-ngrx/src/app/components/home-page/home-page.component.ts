@@ -1,16 +1,15 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { QuestionGroupsActionTypes } from 'src/app/state/questionGroups/actions';
-import { selectQuestionGroups } from 'src/app/state/questionGroups/selectors';
-import { QuestionGroup } from 'src/app/state/questionGroups/entities';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/state/definition';
+import { Observable } from 'rxjs';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
+import { State } from 'src/app/state/definition';
+import { QuestionGroupsActionTypes } from 'src/app/state/questionGroups/actions';
+import { QuestionGroup } from 'src/app/state/questionGroups/entities';
+import { selectQuestionGroups } from 'src/app/state/questionGroups/selectors';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent implements OnInit {

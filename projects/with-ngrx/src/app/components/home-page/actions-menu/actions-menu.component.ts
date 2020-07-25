@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
-import { QuestionGroup } from 'src/app/state/questionGroups/entities';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
+import { QuestionGroup } from 'src/app/state/questionGroups/entities';
 
 @Component({
   selector: 'app-question-group-actions-menu',
   templateUrl: './actions-menu.component.html',
-  styleUrls: ['./actions-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ActionsMenuComponent {

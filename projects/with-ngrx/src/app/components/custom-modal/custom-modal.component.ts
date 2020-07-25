@@ -1,10 +1,10 @@
-import { Component, ChangeDetectorRef, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { CustomModalService } from '../../services/custom-modal/custom-modal.service';
 
 @Component({
   selector: 'app-custom-modal',
   templateUrl: './custom-modal.component.html',
-  styleUrls: ['./custom-modal.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomModalComponent implements OnDestroy {
   @ViewChild('fileInput') fileInput: ElementRef;

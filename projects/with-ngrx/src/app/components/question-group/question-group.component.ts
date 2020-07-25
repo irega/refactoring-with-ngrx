@@ -1,16 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { State } from 'src/app/state/definition';
-import { Store } from '@ngrx/store';
-import { QuestionGroupsService } from 'src/app/services/question-groups/question-groups.service';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CurrentQuestionGroupActionTypes } from 'src/app/state/currentQuestionGroup/actions';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { QuestionGroupsService } from 'src/app/services/question-groups/question-groups.service';
+import { CurrentQuestionGroupActionTypes } from 'src/app/state/currentQuestionGroup/actions';
 import { CurrentQuestionGroup } from 'src/app/state/currentQuestionGroup/entities';
+import { State } from 'src/app/state/definition';
 import { QuestionsActionTypes } from 'src/app/state/questions/actions';
 
 @Component({
   selector: 'app-question-group',
-  templateUrl: './question-group.component.html'
+  templateUrl: './question-group.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuestionGroupComponent implements OnInit, OnDestroy {
   private id: number;
