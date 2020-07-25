@@ -19,7 +19,8 @@ export class QuestionGroupsService {
   }
 
   create(questionGroup: QuestionGroup): Observable<any> {
-    return this.http.post('api/questionGroups', questionGroup);
+    const questionGroupToCreate = { ...questionGroup, questions: [] };
+    return this.http.post('api/questionGroups', questionGroupToCreate);
   }
 
   update(questionGroup: QuestionGroup): Observable<any> {
