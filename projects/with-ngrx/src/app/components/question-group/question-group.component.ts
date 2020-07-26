@@ -17,6 +17,7 @@ export class QuestionGroupComponent implements OnInit, OnDestroy {
   private id: number;
   private subscription: Subscription[] = [];
   questionGroup: any;
+  sectionId = 0;
 
   constructor(
     private store: Store<State>,
@@ -35,6 +36,14 @@ export class QuestionGroupComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.forEach(s => s.unsubscribe());
+  }
+
+  loadSection(sectionId: number): void {
+    this.sectionId = sectionId;
+  }
+
+  isCurrentSection(sectionId: number): boolean {
+    return this.sectionId === sectionId;
   }
 
   private getQuestionGroup() {

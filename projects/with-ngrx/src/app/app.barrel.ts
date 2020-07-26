@@ -4,6 +4,7 @@ import { CustomModalComponent } from './components/custom-modal/custom-modal.com
 import { HeaderComponent } from './components/header/header.component';
 import { ActionsMenuComponent } from './components/home-page/actions-menu/actions-menu.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { ExtraInfoComponent } from './components/question-group/extra-info/extra-info.component';
 import { QuestionGroupComponent } from './components/question-group/question-group.component';
 import { AnswersComponent } from './components/question-group/questions/answers/answers.component';
 import { QuestionsComponent } from './components/question-group/questions/questions.component';
@@ -20,6 +21,7 @@ export const COMPONENTS = [
   HeaderComponent,
   ActionsMenuComponent,
   HomePageComponent,
+  ExtraInfoComponent,
   QuestionGroupComponent,
   AnswersComponent,
   QuestionsComponent

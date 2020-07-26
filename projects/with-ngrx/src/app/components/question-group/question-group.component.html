@@ -1,1 +1,25 @@
-<app-questions></app-questions>
+<nav class="bg-white px-8 pt-2 shadow-md">
+  <div class="-mb-px flex justify-center">
+    <a
+      class="cursor-pointer no-underline border-b-2 uppercase tracking-wide font-bold text-xs py-3 mr-8"
+      (click)="loadSection(0)"
+      [ngClass]="{
+        'text-teal-500 border-teal-500': isCurrentSection(0),
+        'text-teal-200 border-transparent': !isCurrentSection(0)
+      }"
+      >Extra info</a
+    >
+    <a
+      class="cursor-pointer no-underline border-b-2 uppercase tracking-wide font-bold text-xs py-3 mr-8"
+      [ngClass]="{
+        'text-teal-500 border-teal-500': isCurrentSection(1),
+        'text-teal-200 border-transparent': !isCurrentSection(1)
+      }"
+      (click)="loadSection(1)"
+      >Content</a
+    >
+  </div>
+</nav>
+
+<app-extra-info *ngIf="isCurrentSection(0)"></app-extra-info>
+<app-questions *ngIf="isCurrentSection(1)"></app-questions>
