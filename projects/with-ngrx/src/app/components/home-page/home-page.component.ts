@@ -25,7 +25,6 @@ export class HomePageComponent implements OnInit {
     this.customModalService.show({
       title: 'Create new question group',
       description: 'Choose a name for the new question group',
-      descriptionSmall: true,
       createEdit: true,
       labelInputText: { text: 'Name' },
       ok: { text: 'Create' },

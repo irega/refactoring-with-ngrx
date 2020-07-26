@@ -18,7 +18,6 @@ export class ActionsMenuComponent {
     this.customModalService.show({
       title: this.questionGroup.name,
       description: 'Modify the name of this question group',
-      descriptionSmall: true,
       createEdit: true,
       labelInputText: { text: 'Name' },
       ok: { text: 'Edit' },

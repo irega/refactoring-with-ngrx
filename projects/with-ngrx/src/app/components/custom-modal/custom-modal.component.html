@@ -1,4 +1,4 @@
-<section *ngIf="params && params.show" [ngClass]="{ modal: params && params.show, shown: params && params.show }">
+<!-- <section *ngIf="params && params.show" [ngClass]="{ modal: params && params.show, shown: params && params.show }">
   <div [ngClass]="{ dialog: true, show: params && params.show }">
     <header>
       <h1 [ngClass]="'popup-title'">{{ params && params.title }}</h1>
@@ -40,14 +40,7 @@
         </div>
       </div>
     </div>
-    <div *ngIf="params && params.inputFile">
-      <input
-        type="file"
-        #fileInput
-        (change)="fileChange($event)"
-        accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-      />
-    </div>
+
     <footer>
       <button
         id="customConfirmCancel"
@@ -69,4 +62,54 @@
       </button>
     </footer>
   </div>
-</section>
+</section> -->
+
+<div
+  class="modal  fixed w-full h-full top-0 left-0 flex items-center justify-center"
+  *ngIf="params && params.show"
+  [ngClass]="{ 'opacity-0': !params || !params.show, 'pointer-events-none': !params || !params.show }"
+>
+  <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+  <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+    <div class="flex justify-between border-b border-gray-100 px-5 py-4">
+      <div>
+        <span class="font-bold text-gray-700 text-lg">{{ params && params.title }}</span>
+      </div>
+    </div>
+
+    <div class="px-5 py-5 text-gray-600" *ngIf="params && params.description">
+      {{ params && params.description }}
+    </div>
+
+    <div *ngIf="params && params.createEdit" class="px-5 pt-2 pb-8 mb-4">
+      <div>
+        <label class="block text-gray-700 text-sm font-bold mb-2">
+          {{ params && params.labelInputText && params.labelInputText.text }}
+        </label>
+        <input
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          type="text"
+          [(ngModel)]="params.title"
+        />
+      </div>
+    </div>
+
+    <div class="px-5 py-4 flex justify-end">
+      <button
+        class="text-sm py-2 px-3 text-gray-500 hover:text-gray-600 transition duration-150"
+        *ngIf="params && params.cancel && !params.cancel.isHidden"
+        (click)="onCancelClicked()"
+      >
+        {{ params && params.ok && params.cancel.text }}
+      </button>
+      <button
+        class="bg-teal-400 mr-1 rounded text-sm py-2 px-3 text-white hover:bg-teal-500 transition duration-150"
+        *ngIf="params && params.ok && !params.ok.isHidden"
+        (click)="onOkClicked()"
+      >
+        {{ params && params.ok && params.ok.text }}
+      </button>
+    </div>
+  </div>
+</div>
