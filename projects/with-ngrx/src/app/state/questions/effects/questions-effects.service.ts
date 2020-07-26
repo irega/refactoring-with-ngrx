@@ -1,24 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map, catchError, withLatestFrom, concatMap, switchMap, exhaustMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { forkJoin, of } from 'rxjs';
+import { catchError, concatMap, exhaustMap, map, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { AnswersService } from 'src/app/services/answers/answers.service';
+import { QuestionsService } from 'src/app/services/questions/questions.service';
+import { load as loadAnswers } from '../../answers/actions';
+import * as fromCurrentQuestionGroup from '../../currentQuestionGroup/selectors';
+import { State } from '../../definition';
+import { deactivate, LoaderActionTypes } from '../../loader/actions';
 import {
-  QuestionsActionTypes,
-  createSuccess,
   create,
-  editSuccess,
+  createSuccess,
   deleteQuestionSuccess,
+  editSuccess,
+  QuestionsActionTypes,
   toggle,
   toggleSuccess
 } from '../actions';
-import { of, forkJoin } from 'rxjs';
-import { State } from '../../definition';
-import { Store } from '@ngrx/store';
-import * as fromCurrentQuestionGroup from '../../currentQuestionGroup/selectors';
-import * as fromQuestions from '../selectors';
-import { QuestionsService } from 'src/app/services/questions/questions.service';
 import { Question } from '../entities';
-import { AnswersService } from 'src/app/services/answers/answers.service';
-import { load as loadAnswers } from '../../answers/actions';
+import * as fromQuestions from '../selectors';
 
 @Injectable()
 export class QuestionsEffects {
@@ -32,6 +33,7 @@ export class QuestionsEffects {
   createQuestion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(create),
+      tap(() => this.store.dispatch({ type: LoaderActionTypes.ACTIVATE })),
       concatMap(action =>
         of(action).pipe(withLatestFrom(this.store.select(fromCurrentQuestionGroup.selectCurrentQuestionGroup)))
       ),
@@ -44,7 +46,9 @@ export class QuestionsEffects {
         });
       }),
       map(question => createSuccess({ payload: { question } })),
+      tap(() => this.store.dispatch({ type: LoaderActionTypes.DEACTIVATE })),
       catchError(() => {
+        this.store.dispatch({ type: LoaderActionTypes.DEACTIVATE });
         return of({ type: QuestionsActionTypes.CREATE_ERROR });
       })
     )
@@ -53,11 +57,14 @@ export class QuestionsEffects {
   editQuestion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(QuestionsActionTypes.EDIT),
+      tap(() => this.store.dispatch({ type: LoaderActionTypes.ACTIVATE })),
       exhaustMap((action: { payload: { question: Question } }) =>
         this.questionsService.update(action.payload.question)
       ),
       map(question => editSuccess({ payload: { question } })),
+      tap(() => this.store.dispatch({ type: LoaderActionTypes.DEACTIVATE })),
       catchError(() => {
+        this.store.dispatch({ type: LoaderActionTypes.DEACTIVATE });
         return of({ type: QuestionsActionTypes.EDIT_ERROR });
       })
     )
@@ -66,11 +73,14 @@ export class QuestionsEffects {
   deleteQuestion$ = createEffect(() =>
     this.actions$.pipe(
       ofType(QuestionsActionTypes.DELETE),
+      tap(() => this.store.dispatch({ type: LoaderActionTypes.ACTIVATE })),
       exhaustMap((action: { payload: { questionId: number } }) =>
         forkJoin([of(action.payload.questionId), this.questionsService.delete(action.payload.questionId)])
       ),
       map(result => deleteQuestionSuccess({ payload: { questionId: result[0] } })),
+      tap(() => this.store.dispatch({ type: LoaderActionTypes.DEACTIVATE })),
       catchError(() => {
+        this.store.dispatch({ type: LoaderActionTypes.DEACTIVATE });
         return of({ type: QuestionsActionTypes.DELETE_ERROR });
       })
     )
@@ -79,6 +89,7 @@ export class QuestionsEffects {
   toggle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(toggle),
+      tap(() => this.store.dispatch({ type: LoaderActionTypes.ACTIVATE })),
       concatMap(action =>
         of(action).pipe(
           withLatestFrom(this.store.select(fromQuestions.selectQuestionById, { id: action.payload.questionId }))
@@ -86,6 +97,7 @@ export class QuestionsEffects {
       ),
       switchMap(([action, existingQuestion]) => {
         if (existingQuestion.isOpened) {
+          this.store.dispatch({ type: LoaderActionTypes.DEACTIVATE });
           return of(toggleSuccess({ payload: { questionId: action.payload.questionId } }));
         }
 
@@ -102,12 +114,14 @@ export class QuestionsEffects {
                   }))
                 }
               }),
-              toggleSuccess({ payload: { questionId: action.payload.questionId } })
+              toggleSuccess({ payload: { questionId: action.payload.questionId } }),
+              deactivate()
             ];
           })
         );
       }),
       catchError(() => {
+        this.store.dispatch({ type: LoaderActionTypes.DEACTIVATE });
         return of({ type: QuestionsActionTypes.TOGGLE_ERROR });
       })
     )

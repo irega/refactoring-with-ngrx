@@ -1,10 +1,11 @@
-import { AppComponent } from './app.component';
-import { Spectator, createComponentFactory } from '@ngneat/spectator';
-import { RouterTestingModule } from '@angular/router/testing';
-import { provideMockStore } from '@ngrx/store/testing';
-import { HeaderComponent } from './components/header/header.component';
-import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
 import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
+import { provideMockStore } from '@ngrx/store/testing';
+import { AppComponent } from './app.component';
+import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoaderComponent } from './components/loader/loader.component';
 import { CustomModalService } from './services/custom-modal/custom-modal.service';
 
 const initialState = {
@@ -15,7 +16,7 @@ describe('The app component', () => {
   let spectator: Spectator<AppComponent>;
   const createComponent = createComponentFactory({
     component: AppComponent,
-    declarations: [HeaderComponent, CustomModalComponent],
+    declarations: [HeaderComponent, CustomModalComponent, LoaderComponent],
     imports: [RouterTestingModule, FormsModule],
     providers: [CustomModalService, provideMockStore({ initialState })]
   });
