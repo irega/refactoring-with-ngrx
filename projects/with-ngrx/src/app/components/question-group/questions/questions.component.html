@@ -1,58 +1,48 @@
-<form>
-  <section class="section-card" *ngFor="let item of questions$ | async; let i = index">
-    <div class="two-columns-grid">
-      <div class="question-container">
-        <h3 class="section-card__title">QUESTION</h3>
-        <div class="question-row">
-          <span class="question-row__chevron-expand" (click)="toggleQuestion(item.id)">
-            >
-          </span>
-          <div id="questionWrapper-{{ i }}" class="question-input-wrapper">
-            <input
-              id="questionInput-{{ i }}"
-              type="text"
-              value="{{ item.text }}"
-              [attr.data-item-id]="item.id"
-              class="question-input"
-              (focusout)="updateQuestion(13, item, $event.target.value)"
-              (keyup)="updateQuestion($event.keyCode, item, $event.target.value)"
-            />
-            <button
-              id="questionDelete-{{ i }}"
-              type="button"
-              class="question-button delete logo"
-              (click)="deleteQuestion(item.id)"
-            ></button>
-          </div>
-        </div>
-      </div>
-      <div class="question-container">
-        <div class="question-wrapper">
-          <app-answers
-            *ngIf="item.isOpened"
-            [answers]="answers"
-            (add)="addAnswer($event)"
-            (edit)="editAnswer($event)"
-            (delete)="deleteAnswer($event)"
-          >
-          </app-answers>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section-card">
-    <div class="two-columns-grid">
-      <div class="question-input-wrapper">
+<div class="h-100 w-full flex bg-teal-lightest font-sans items-center justify-center">
+  <div class="bg-white rounded shadow p-6 m-4 w-full ">
+    <div class="mb-4">
+      <h1 class="text-grey-darkest text-2xl">Questions</h1>
+      <div class="flex mt-4 lg:w-3/4 lg:max-w-3xl">
         <input
-          id="questionInput"
-          class="question-input add-question"
-          type="text"
+          class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
+          placeholder="Add a question"
           (keyup)="addQuestion($event.keyCode)"
           [(ngModel)]="questionToAddText"
-          name="questionToAddText"
         />
       </div>
     </div>
-  </section>
-</form>
+    <div class="mt-8">
+      <div class="flex-wrap mb-4 items-center lg:w-3/4 lg:max-w-3xl" *ngFor="let item of questions$ | async">
+        <div class="flex">
+          <input
+            type="text"
+            value="{{ item.text }}"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            (focusout)="updateQuestion(13, item, $event.target.value)"
+            (keyup)="updateQuestion($event.keyCode, item, $event.target.value)"
+          />
+          <button
+            class="flex-no-shrink p-2 ml-2 border-2 rounded border-teal-200 hover:text-white hover:bg-teal-500"
+            (click)="toggleQuestion(item.id)"
+          >
+            {{ item.isOpened ? 'Collapse' : 'Expand' }}
+          </button>
+          <button
+            class="flex-no-shrink p-2 ml-2 border-2 rounded border-teal-200 hover:text-white hover:bg-teal-500"
+            (click)="deleteQuestion(item.id)"
+          >
+            Delete
+          </button>
+        </div>
+
+        <app-answers
+          *ngIf="item.isOpened"
+          [answers]="answers"
+          (add)="addAnswer($event)"
+          (edit)="editAnswer($event)"
+          (delete)="deleteAnswer($event)"
+        ></app-answers>
+      </div>
+    </div>
+  </div>
+</div>
