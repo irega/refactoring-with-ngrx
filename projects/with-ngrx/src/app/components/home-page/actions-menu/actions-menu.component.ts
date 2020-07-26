@@ -12,15 +12,7 @@ export class ActionsMenuComponent {
   @Output() edited = new EventEmitter<QuestionGroup>();
   @Output() deleted = new EventEmitter<number>();
 
-  public openMenu: boolean;
-
-  constructor(private customModalService: CustomModalService) {
-    this.openMenu = false;
-  }
-
-  openMenuEvent(): void {
-    this.openMenu = !this.openMenu;
-  }
+  constructor(private customModalService: CustomModalService) {}
 
   openModalEdit() {
     this.customModalService.show({
