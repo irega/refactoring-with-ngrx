@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
@@ -23,10 +23,17 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
   private answersSubscription: Subscription;
 
-  constructor(private store: Store<State>, private customModalService: CustomModalService) {}
+  constructor(
+    private store: Store<State>,
+    private customModalService: CustomModalService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
-    this.answersSubscription = this.answers$.subscribe(answers => (this.answers = answers));
+    this.answersSubscription = this.answers$.subscribe(answers => {
+      this.answers = answers;
+      this.changeDetectorRef.detectChanges();
+    });
   }
 
   ngOnDestroy() {
