@@ -37,7 +37,7 @@
 
         <app-answers
           *ngIf="item.isOpened"
-          [answers]="answers"
+          [answers]="answers$ | async"
           (add)="addAnswer($event)"
           (edit)="editAnswer($event)"
           (delete)="deleteAnswer($event)"

@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
 import { AnswersActionTypes } from 'src/app/state/answers/actions';
 import { Answer } from 'src/app/state/answers/entities';
@@ -15,30 +15,12 @@ import { selectQuestions } from 'src/app/state/questions/selectors';
   templateUrl: './questions.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class QuestionsComponent implements OnInit, OnDestroy {
+export class QuestionsComponent {
   questionToAddText = '';
   questions$: Observable<Question[]> = this.store.select(selectQuestions);
   answers$: Observable<Answer[]> = this.store.select(selectAnswers);
-  answers: Answer[];
 
-  private answersSubscription: Subscription;
-
-  constructor(
-    private store: Store<State>,
-    private customModalService: CustomModalService,
-    private changeDetectorRef: ChangeDetectorRef
-  ) {}
-
-  ngOnInit() {
-    this.answersSubscription = this.answers$.subscribe(answers => {
-      this.answers = answers;
-      this.changeDetectorRef.detectChanges();
-    });
-  }
-
-  ngOnDestroy() {
-    this.answersSubscription.unsubscribe();
-  }
+  constructor(private store: Store<State>, private customModalService: CustomModalService) {}
 
   updateQuestion(keyCode: number, question: Question, text: string): void {
     if (keyCode !== 13) {
