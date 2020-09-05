@@ -1,24 +1,24 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  load,
   create,
-  createSuccess,
   createError,
-  edit,
-  editSuccess,
-  editError,
+  createSuccess,
   deleteQuestion,
-  deleteQuestionSuccess,
   deleteQuestionError,
+  deleteQuestionSuccess,
+  edit,
+  editError,
+  editSuccess,
+  load,
   toggle,
   toggleError,
   toggleSuccess
 } from '../actions';
-import { LOAD } from './load';
-import { CREATE, CREATE_ERROR, CREATE_SUCCESS } from '../reducers/create';
-import { EDIT, EDIT_SUCCESS, EDIT_ERROR } from './edit';
-import { DELETE_SUCCESS, DELETE, DELETE_ERROR } from './delete';
-import { TOGGLE, TOGGLE_SUCCESS, TOGGLE_ERROR } from './toggle';
+import { CREATE, CREATE_ERROR, CREATE_SUCCESS } from './create/create';
+import { DELETE, DELETE_ERROR, DELETE_SUCCESS } from './delete/delete';
+import { EDIT, EDIT_ERROR, EDIT_SUCCESS } from './edit/edit';
+import { LOAD } from './load/load';
+import { TOGGLE, TOGGLE_ERROR, TOGGLE_SUCCESS } from './toggle/toggle';
 
 const initialState = [];
 

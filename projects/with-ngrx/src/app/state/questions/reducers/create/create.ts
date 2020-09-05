@@ -1,4 +1,4 @@
-import { Question } from '../entities';
+import { Question } from '../../entities';
 
 export function CREATE(state: Question[]): Question[] {
   return [...state];

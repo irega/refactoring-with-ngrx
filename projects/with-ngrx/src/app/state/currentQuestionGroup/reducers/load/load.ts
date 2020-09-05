@@ -1,4 +1,4 @@
-import { CurrentQuestionGroup } from '../entities';
+import { CurrentQuestionGroup } from '../../entities';
 
 export function LOAD(
   _state: CurrentQuestionGroup,
