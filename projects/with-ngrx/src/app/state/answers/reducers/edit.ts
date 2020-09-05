@@ -6,8 +6,8 @@ export function EDIT(state: Answer[]): Answer[] {
 
 export function EDIT_SUCCESS(state, action: { payload: { answer } }): Answer[] {
   const newState = [...state];
-  const updatedQuestionIndex = newState.findIndex(d => d && d.id === action.payload.answer.id);
-  newState[updatedQuestionIndex] = action.payload.answer;
+  const updatedAnswerIndex = newState.findIndex(d => d && d.id === action.payload.answer.id);
+  newState[updatedAnswerIndex] = action.payload.answer;
   return newState;
 }
 

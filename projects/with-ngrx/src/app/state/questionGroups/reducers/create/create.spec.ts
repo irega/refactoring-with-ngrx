@@ -1,6 +1,6 @@
 import { QuestionGroup } from '../../entities';
-import { CREATE, CREATE_SUCCESS, CREATE_ERROR } from './create';
 import { Given } from '../../shared/questionGroups.fixtures';
+import { CREATE, CREATE_ERROR, CREATE_SUCCESS } from './create';
 
 describe('The create question group action', () => {
   it('should return the same question groups', () => {
@@ -14,12 +14,20 @@ describe('The create question group action', () => {
 
 describe('The create question group success action', () => {
   it('should create the selected question group', () => {
-    const a_question_group_list: QuestionGroup[] = [Given.a_question_group()];
-    const a_question_group_to_create = Given.a_question_group();
+    const a_question_group = new Given()
+      .a_question_group()
+      .withName('A question group')
+      .build();
+    const a_question_group_list: QuestionGroup[] = [a_question_group];
+    const a_question_group_to_create = new Given()
+      .a_question_group()
+      .withId(a_question_group.id + 1)
+      .withName('Another question group')
+      .build();
 
     const question_groups = CREATE_SUCCESS(a_question_group_list, { questionGroup: a_question_group_to_create });
 
-    const created_question_group = question_groups.find(d => (d ? d.id === a_question_group_to_create.id : false));
+    const created_question_group = question_groups.find(qg => qg.id === a_question_group_to_create.id);
     expect(created_question_group).toEqual(a_question_group_to_create);
   });
 });
