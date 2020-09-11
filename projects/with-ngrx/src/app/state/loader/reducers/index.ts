@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { activate, deactivate } from '../actions';
 import { Loader } from '../entities';
-import { ACTIVATE } from './activate';
-import { DEACTIVATE } from './deactivate';
+import { ACTIVATE } from './activate/activate';
+import { DEACTIVATE } from './deactivate/deactivate';
 
 const initialState: Loader = { isActive: false, pendingRequests: 0 };
 

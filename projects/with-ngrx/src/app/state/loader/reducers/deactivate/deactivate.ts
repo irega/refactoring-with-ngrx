@@ -1,4 +1,4 @@
-import { Loader } from '../entities';
+import { Loader } from '../../entities';
 
 export function DEACTIVATE(state: Loader): Loader {
   const newState = { ...state };
