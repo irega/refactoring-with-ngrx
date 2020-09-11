@@ -1,4 +1,4 @@
-import { Answer } from '../entities';
+import { Answer } from '../../entities';
 
 export function EDIT(state: Answer[]): Answer[] {
   return [...state];

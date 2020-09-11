@@ -1,20 +1,20 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  load,
   create,
-  createSuccess,
   createError,
-  editSuccess,
+  createSuccess,
+  deleteAnswer,
+  deleteAnswerError,
+  deleteAnswerSuccess,
   edit,
   editError,
-  deleteAnswerSuccess,
-  deleteAnswer,
-  deleteAnswerError
+  editSuccess,
+  load
 } from '../actions';
-import { LOAD } from './load';
-import { CREATE_ERROR, CREATE_SUCCESS, CREATE } from './create';
-import { DELETE_ERROR, DELETE_SUCCESS, DELETE } from './delete';
-import { EDIT_ERROR, EDIT_SUCCESS, EDIT } from './edit';
+import { CREATE, CREATE_ERROR, CREATE_SUCCESS } from './create/create';
+import { DELETE, DELETE_ERROR, DELETE_SUCCESS } from './delete/delete';
+import { EDIT, EDIT_ERROR, EDIT_SUCCESS } from './edit/edit';
+import { LOAD } from './load/load';
 
 const initialState = [];
 
