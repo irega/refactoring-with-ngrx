@@ -28,7 +28,10 @@ describe('The create question group effect', () => {
 
   it('should return a create question group success action', done => {
     const a_question_group = Given.a_question_group();
-    actions$ = of({ type: QuestionGroupsActionTypes.CREATE });
+    actions$ = of({
+      type: QuestionGroupsActionTypes.CREATE,
+      payload: { id: a_question_group.id, name: a_question_group.name }
+    });
 
     const questionGroupsService = spectator.inject<QuestionGroupsService>(QuestionGroupsService);
     questionGroupsService.create.and.callFake(() => of(a_question_group));
