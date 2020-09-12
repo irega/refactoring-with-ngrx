@@ -1,13 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { CustomModalService } from '../../services/custom-modal/custom-modal.service';
 
 @Component({
   selector: 'app-custom-modal',
-  templateUrl: './custom-modal.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './custom-modal.component.html'
 })
 export class CustomModalComponent implements OnDestroy {
-  @ViewChild('fileInput') fileInput: ElementRef;
   params: any;
   hidden: boolean;
   private result: Array<string>;
@@ -15,9 +13,6 @@ export class CustomModalComponent implements OnDestroy {
   constructor(private customModalService: CustomModalService, private cdRef: ChangeDetectorRef) {
     this.customModalService.stateChange.subscribe(params => {
       this.params = params;
-      if (this.fileInput) {
-        this.fileInput.nativeElement.value = '';
-      }
       this.result = [];
       this.cdRef.detectChanges();
     });
@@ -52,9 +47,5 @@ export class CustomModalComponent implements OnDestroy {
     this.cdRef.detectChanges();
     document.querySelectorAll('.modal .checkboxes input').forEach(input => ((input as any).checked = false));
     this.customModalService.hide(this.params);
-  }
-
-  fileChange(event) {
-    this.params.file = event.target.files[0];
   }
 }
