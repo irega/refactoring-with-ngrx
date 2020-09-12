@@ -8,6 +8,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { ContentComponent } from './components/question-group/content/content.component';
 import { AnswersComponent } from './components/question-group/content/questions/answers/answers.component';
 import { QuestionsComponent } from './components/question-group/content/questions/questions.component';
+import { SelectTopicsModalComponent } from './components/question-group/content/topics/select-topics-modal/select-topics-modal.component';
 import { TopicsComponent } from './components/question-group/content/topics/topics.component';
 import { QuestionGroupComponent } from './components/question-group/question-group.component';
 import { SummaryComponent } from './components/question-group/summary/summary,.component';
@@ -29,6 +30,7 @@ export const COMPONENTS = [
   ContentComponent,
   AnswersComponent,
   QuestionsComponent,
+  SelectTopicsModalComponent,
   TopicsComponent,
   QuestionGroupComponent,
   SummaryComponent

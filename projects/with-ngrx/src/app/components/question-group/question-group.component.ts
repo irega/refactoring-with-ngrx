@@ -119,6 +119,11 @@ export class QuestionGroupComponent implements OnInit, OnDestroy {
       case 'content-answer-delete':
         // this.store.dispatch({ type: AnswersActionTypes.DELETE, payload: { answerId: event.value.answerId } });
         break;
+      case 'content-topic-select':
+        this.questionGroup.topicIds = event.value.topics.map(t => t.id);
+        this.questionGroupsService.update(this.questionGroup);
+        this.selectedTopicIds = this.questionGroup.topicIds;
+        break;
     }
   }
 }

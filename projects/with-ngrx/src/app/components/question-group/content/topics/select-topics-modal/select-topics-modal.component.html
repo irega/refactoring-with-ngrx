@@ -1,0 +1,70 @@
+<div
+  class="modal  fixed w-full h-full top-0 left-0 flex items-center justify-center"
+  *ngIf="params && params.show"
+  [ngClass]="{ 'opacity-0': !params || !params.show, 'pointer-events-none': !params || !params.show }"
+>
+  <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+
+  <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+    <div class="flex justify-between border-b border-gray-100 px-5 py-4">
+      <div>
+        <span class="font-bold text-gray-700 text-lg">{{ params && params.title }}</span>
+      </div>
+    </div>
+
+    <div class="px-5 py-5 text-gray-600" *ngIf="params && params.description">
+      {{ params && params.description }}
+    </div>
+
+    <span *ngIf="params && params.input">
+      <label class="custom-label flex mt-2 ml-3" *ngFor="let item of params.input">
+        <div class="bg-white w-6 h-6 p-1 flex justify-center items-center mr-2">
+          <input
+            type="checkbox"
+            name="item"
+            (change)="changeStatus(item, $event.target.checked)"
+            [attr.checked]="null"
+            value="item"
+          />
+          <svg class="hidden w-4 h-4 text-green-600 pointer-events-none" viewBox="0 0 172 172">
+            <g
+              fill="none"
+              stroke-width="none"
+              stroke-miterlimit="10"
+              font-family="none"
+              font-weight="none"
+              font-size="none"
+              text-anchor="none"
+              style="mix-blend-mode:normal"
+            >
+              <path d="M0 172V0h172v172z" />
+              <path
+                d="M145.433 37.933L64.5 118.8658 33.7337 88.0996l-10.134 10.1341L64.5 139.1341l91.067-91.067z"
+                fill="currentColor"
+                stroke-width="1"
+              />
+            </g>
+          </svg>
+        </div>
+        <span class="select-none">{{ item }}</span>
+      </label>
+    </span>
+
+    <div class="px-5 py-4 flex justify-end">
+      <button
+        class="text-sm py-2 px-3 text-gray-500 hover:text-gray-600 transition duration-150"
+        *ngIf="params && params.cancel && !params.cancel.isHidden"
+        (click)="onCancelClicked()"
+      >
+        {{ params && params.ok && params.cancel.text }}
+      </button>
+      <button
+        class="bg-teal-400 mr-1 rounded text-sm py-2 px-3 text-white hover:bg-teal-500 transition duration-150"
+        *ngIf="params && params.ok && !params.ok.isHidden"
+        (click)="onOkClicked()"
+      >
+        {{ params && params.ok && params.ok.text }}
+      </button>
+    </div>
+  </div>
+</div>
