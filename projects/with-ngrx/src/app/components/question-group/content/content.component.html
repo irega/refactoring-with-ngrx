@@ -1,0 +1,6 @@
+<app-questions (messageEventFromQuestions)="receiveMessageFromQuestions($event)"></app-questions>
+<app-topics
+  [topics]="topics"
+  [selectedTopicIds]="selectedTopicIds"
+  (messageEventFromTopics)="receiveMessageFromTopics($event)"
+></app-topics>

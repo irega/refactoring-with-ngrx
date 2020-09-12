@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
@@ -16,9 +16,13 @@ import { selectQuestions } from 'src/app/state/questions/selectors';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class QuestionsComponent {
-  questionToAddText = '';
+  @Output() messageEventFromQuestions = new EventEmitter<{ action: string; value: any }>();
+
+  // TODO: Pass the store dependency to the upper level components and transform questions and answers into input properties.
   questions$: Observable<Question[]> = this.store.select(selectQuestions);
   answers$: Observable<Answer[]> = this.store.select(selectAnswers);
+
+  questionToAddText = '';
 
   constructor(private store: Store<State>, private customModalService: CustomModalService) {}
 
@@ -28,6 +32,7 @@ export class QuestionsComponent {
     }
     const questionToUpdate = Object.assign({}, question, { text });
     this.store.dispatch({ type: QuestionsActionTypes.EDIT, payload: { question: questionToUpdate } });
+    this.messageEventFromQuestions.emit({ action: 'question-update', value: { question: questionToUpdate } });
   }
 
   addQuestion(keyCode: number): void {
@@ -35,6 +40,7 @@ export class QuestionsComponent {
       return;
     }
     this.store.dispatch({ type: QuestionsActionTypes.CREATE, payload: { text: this.questionToAddText } });
+    this.messageEventFromQuestions.emit({ action: 'question-add', value: { text: this.questionToAddText } });
     this.questionToAddText = '';
   }
 
@@ -49,23 +55,28 @@ export class QuestionsComponent {
       subscription.unsubscribe();
       if (params.confirmed) {
         this.store.dispatch({ type: QuestionsActionTypes.DELETE, payload: { questionId } });
+        this.messageEventFromQuestions.emit({ action: 'question-delete', value: { questionId } });
       }
     });
   }
 
   toggleQuestion(questionId: number) {
     this.store.dispatch({ type: QuestionsActionTypes.TOGGLE, payload: { questionId } });
+    this.messageEventFromQuestions.emit({ action: 'question-toggle', value: { questionId } });
   }
 
   addAnswer(answer: Answer) {
     this.store.dispatch({ type: AnswersActionTypes.CREATE, payload: { answer } });
+    this.messageEventFromQuestions.emit({ action: 'answer-add', value: { answer } });
   }
 
   editAnswer(answer: Answer) {
     this.store.dispatch({ type: AnswersActionTypes.EDIT, payload: { answer } });
+    this.messageEventFromQuestions.emit({ action: 'answer-update', value: { answer } });
   }
 
   deleteAnswer(answerId: number): void {
     this.store.dispatch({ type: AnswersActionTypes.DELETE, payload: { answerId } });
+    this.messageEventFromQuestions.emit({ action: 'answer-delete', value: { answerId } });
   }
 }

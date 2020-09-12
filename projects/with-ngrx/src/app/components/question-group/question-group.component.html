@@ -7,7 +7,7 @@
         'text-teal-500 border-teal-500': isCurrentSection(0),
         'text-teal-200 border-transparent': !isCurrentSection(0)
       }"
-      >Extra info</a
+      >Summary</a
     >
     <a
       class="cursor-pointer no-underline border-b-2 uppercase tracking-wide font-bold text-xs py-3 mr-8"
@@ -21,5 +21,10 @@
   </div>
 </nav>
 
-<app-extra-info *ngIf="isCurrentSection(0)"></app-extra-info>
-<app-questions *ngIf="isCurrentSection(1)"></app-questions>
+<app-summary *ngIf="isCurrentSection(0)" [totalQuestions]="totalQuestions" [totalAnswers]="totalAnswers"></app-summary>
+<app-content
+  *ngIf="isCurrentSection(1)"
+  [topics]="topics"
+  [selectedTopicIds]="selectedTopicIds"
+  (messageEventFromContent)="receiveMessageFromContent($event)"
+></app-content>

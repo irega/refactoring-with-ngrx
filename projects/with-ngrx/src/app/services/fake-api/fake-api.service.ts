@@ -10,6 +10,7 @@ export class FakeApiService implements InMemoryDbService {
       {
         id: 1,
         name: 'Question Group 1',
+        topicIds: [1],
         questions: [
           {
             id: 1,
@@ -25,6 +26,7 @@ export class FakeApiService implements InMemoryDbService {
       {
         id: 2,
         name: 'Question Group 2',
+        topicIds: [2],
         questions: [
           {
             id: 2,
@@ -38,6 +40,11 @@ export class FakeApiService implements InMemoryDbService {
         ]
       }
     ];
-    return { questionGroups };
+
+    const topics = [
+      { id: 1, name: 'Cars' },
+      { id: 2, name: 'Aliens' }
+    ];
+    return { questionGroups, topics };
   }
 }
