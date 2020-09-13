@@ -1,12 +1,10 @@
-import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { HeaderComponent } from './header.component';
+import { SelectTopicsModalComponent } from './select-topics-modal.component';
 
-describe('The header component', () => {
-  let spectator: Spectator<HeaderComponent>;
+describe('The select topics modal component', () => {
+  let spectator: Spectator<SelectTopicsModalComponent>;
   const createComponent = createComponentFactory({
-    component: HeaderComponent,
-    imports: [RouterTestingModule]
+    component: SelectTopicsModalComponent
   });
 
   beforeEach(() => (spectator = createComponent()));

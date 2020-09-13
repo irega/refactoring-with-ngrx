@@ -1,12 +1,12 @@
-import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { HeaderComponent } from './header.component';
+import { AnswersComponent } from './answers.component';
 
-describe('The header component', () => {
-  let spectator: Spectator<HeaderComponent>;
+describe('The answers component', () => {
+  let spectator: Spectator<AnswersComponent>;
   const createComponent = createComponentFactory({
-    component: HeaderComponent,
-    imports: [RouterTestingModule]
+    component: AnswersComponent,
+    imports: [FormsModule]
   });
 
   beforeEach(() => (spectator = createComponent()));

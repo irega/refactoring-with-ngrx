@@ -1,10 +1,13 @@
-import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
 import { State } from 'src/app/state/definition';
-import { ActionsMenuComponent } from './actions-menu/actions-menu.component';
-import { HomePageComponent } from './home-page.component';
+import { ContentComponent } from './content.component';
+import { AnswersComponent } from './questions/answers/answers.component';
+import { QuestionsComponent } from './questions/questions.component';
+import { SelectTopicsModalComponent } from './topics/select-topics-modal/select-topics-modal.component';
+import { TopicsComponent } from './topics/topics.component';
 
 const initialState: State = {
   answers: [],
@@ -14,12 +17,12 @@ const initialState: State = {
   loader: { isActive: false, pendingRequests: 0 }
 };
 
-describe('The home page component', () => {
-  let spectator: Spectator<HomePageComponent>;
+describe('The content component', () => {
+  let spectator: Spectator<ContentComponent>;
   const createComponent = createComponentFactory({
-    component: HomePageComponent,
-    declarations: [ActionsMenuComponent],
-    imports: [RouterTestingModule],
+    component: ContentComponent,
+    declarations: [QuestionsComponent, TopicsComponent, AnswersComponent, SelectTopicsModalComponent],
+    imports: [FormsModule],
     providers: [CustomModalService, provideMockStore({ initialState })]
   });
 

@@ -8,9 +8,14 @@ import { CustomModalComponent } from './components/custom-modal/custom-modal.com
 import { HeaderComponent } from './components/header/header.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { CustomModalService } from './services/custom-modal/custom-modal.service';
+import { State } from './state/definition';
 
-const initialState = {
-  questionGroyups: []
+const initialState: State = {
+  answers: [],
+  questions: [],
+  questionGroups: [],
+  currentQuestionGroup: { id: 0, name: '' },
+  loader: { isActive: false, pendingRequests: 0 }
 };
 
 describe('The app component', () => {

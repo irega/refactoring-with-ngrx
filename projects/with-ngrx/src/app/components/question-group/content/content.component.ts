@@ -5,8 +5,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './content.component.html'
 })
 export class ContentComponent {
-  @Input() topics: any[];
-  @Input() selectedTopicIds: any[];
+  @Input() topics: any[] = [];
+  @Input() selectedTopicIds: any[] = [];
   @Output() messageEventFromContent = new EventEmitter<{ action: string; value: any }>();
 
   receiveMessageFromQuestions(event: { action: string; value: any }) {
