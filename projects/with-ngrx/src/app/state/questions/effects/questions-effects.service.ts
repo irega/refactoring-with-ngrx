@@ -101,7 +101,7 @@ export class QuestionsEffects {
           return of(toggleSuccess({ payload: { questionId: action.payload.questionId } }));
         }
 
-        return forkJoin([this.answersService.getAll(action.payload.questionId)]).pipe(
+        return forkJoin([this.answersService.getAll(existingQuestion.questionGroupId, action.payload.questionId)]).pipe(
           switchMap(([answers]) => {
             return [
               loadAnswers({

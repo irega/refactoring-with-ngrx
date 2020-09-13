@@ -1,5 +1,6 @@
-import { Output, EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 
+// TODO: Remove if the general modal component is not needed in the future.
 @Injectable()
 export class CustomModalService {
   @Output() stateChange: EventEmitter<any> = new EventEmitter();

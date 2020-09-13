@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { Question } from 'src/app/state/questions/entities';
 
 @Injectable({
@@ -39,7 +39,11 @@ export class QuestionsService {
           .toPromise()
           .then((questionGroup: any) => {
             const questionToUpdateIndex = questionGroup.questions.findIndex(q => q.id === question.id);
-            questionGroup.questions[questionToUpdateIndex] = question;
+            questionGroup.questions[questionToUpdateIndex] = Object.assign(
+              {},
+              questionGroup.questions[questionToUpdateIndex],
+              question
+            );
             this.http
               .put(`api/questionGroups/${questionGroup.id}`, questionGroup)
               .toPromise()

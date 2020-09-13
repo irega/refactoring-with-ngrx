@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
 import { QuestionGroup } from 'src/app/state/questionGroups/entities';
 
 @Injectable({
@@ -24,7 +23,14 @@ export class QuestionGroupsService {
   }
 
   update(questionGroup: QuestionGroup): Observable<any> {
-    return this.http.put(`api/questionGroups/${questionGroup.id}`, questionGroup).pipe(map(() => questionGroup));
+    return from(
+      new Promise(resolve => {
+        return this.http
+          .put(`api/questionGroups/${questionGroup.id}`, questionGroup)
+          .toPromise()
+          .then(() => resolve(questionGroup));
+      })
+    );
   }
 
   delete(id: number): Observable<any> {

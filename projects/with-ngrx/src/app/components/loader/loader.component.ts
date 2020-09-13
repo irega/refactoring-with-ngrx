@@ -19,6 +19,7 @@ export class LoaderComponent implements OnInit, OnDestroy {
   constructor(private store: Store<State>, private ref: ChangeDetectorRef) {}
 
   ngOnInit() {
+    // TODO: Probably we can manage the subscription directly from the HTML with the 'async' pipe, avoiding the ChangeDetectorRef.
     this.loaderSubscription = this.loader$.subscribe(({ isActive }) => {
       this.isActive = isActive;
       this.ref.detectChanges();

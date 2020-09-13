@@ -15,6 +15,7 @@ import { selectQuestionGroups } from 'src/app/state/questionGroups/selectors';
 export class HomePageComponent implements OnInit {
   questionGroups$: Observable<QuestionGroup[]> = this.store.select(selectQuestionGroups);
 
+  // TODO: In future iterations, analyze if it's better create a specific modal component instead of the general modal component.
   constructor(private store: Store<State>, private customModalService: CustomModalService) {}
 
   ngOnInit() {

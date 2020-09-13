@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { Answer } from 'src/app/state/answers/entities';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { Answer } from 'src/app/state/answers/entities';
 export class AnswersService {
   constructor(private http: HttpClient) {}
 
-  getAll(questionId: number): Observable<any> {
+  getAll(questionGroupId: number, questionId: number): Observable<any> {
     return from(
       new Promise(resolve => {
         this.http
@@ -18,7 +18,7 @@ export class AnswersService {
           .then((allQuestionGroups: any) => {
             const allAnswers = [];
             allQuestionGroups.forEach(qg => qg.questions.forEach(q => q.answers.forEach(a => allAnswers.push(a))));
-            resolve(allAnswers.filter(a => a.questionId === questionId));
+            resolve(allAnswers.filter(a => a.questionId === questionId && a.questionGroupId === questionGroupId));
           });
       })
     );

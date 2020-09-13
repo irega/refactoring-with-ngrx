@@ -21,7 +21,7 @@
   </div>
 </nav>
 
-<app-summary *ngIf="isCurrentSection(0)" [totalQuestions]="totalQuestions" [totalAnswers]="totalAnswers"></app-summary>
+<app-summary *ngIf="isCurrentSection(0)" [totalQuestions]="totalQuestions"></app-summary>
 <app-content
   *ngIf="isCurrentSection(1)"
   [topics]="topics"

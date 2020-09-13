@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { QuestionGroupsService } from 'src/app/services/question-groups/question-groups.service';
 import { TopicsService } from 'src/app/services/topics/topics.service';
-import { selectAnswers } from 'src/app/state/answers/selectors';
 import { CurrentQuestionGroupActionTypes } from 'src/app/state/currentQuestionGroup/actions';
 import { CurrentQuestionGroup } from 'src/app/state/currentQuestionGroup/entities';
 import { State } from 'src/app/state/definition';
@@ -19,7 +18,6 @@ export class QuestionGroupComponent implements OnInit, OnDestroy {
   questionGroup: any;
   sectionId = 0;
   totalQuestions = 0;
-  totalAnswers = 0;
   private id: number;
   private subscriptions: Subscription[] = [];
   topics: any[] = [];
@@ -45,7 +43,6 @@ export class QuestionGroupComponent implements OnInit, OnDestroy {
 
   private subscribeToStateChange() {
     this.subscriptions.push(this.store.select(selectQuestions).subscribe(q => (this.totalQuestions = q.length)));
-    this.subscriptions.push(this.store.select(selectAnswers).subscribe(a => (this.totalAnswers = a.length)));
   }
 
   ngOnDestroy() {
@@ -97,6 +94,8 @@ export class QuestionGroupComponent implements OnInit, OnDestroy {
   }
 
   receiveMessageFromContent(event: { action: string; value: any }) {
+    // TODO: Once the refactor to ngrx will be finished, this component will manage the events sent by the child components and invoke the store actions.
+    // The difference with the original code is all the logic will be encapsulated in the store, having softer components and more testable code.
     switch (event.action) {
       case 'content-question-add':
         // this.store.dispatch({ type: QuestionsActionTypes.CREATE, payload: { text: event.value.text } });

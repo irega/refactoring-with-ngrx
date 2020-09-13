@@ -3,6 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { provideMockStore } from '@ngrx/store/testing';
 import { AppComponent } from './app.component';
+import { APP_SETTINGS, SETTINGS } from './app.config';
 import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoaderComponent } from './components/loader/loader.component';
@@ -18,7 +19,11 @@ describe('The app component', () => {
     component: AppComponent,
     declarations: [HeaderComponent, CustomModalComponent, LoaderComponent],
     imports: [RouterTestingModule, FormsModule],
-    providers: [CustomModalService, provideMockStore({ initialState })]
+    providers: [
+      { provide: APP_SETTINGS, useFactory: () => SETTINGS },
+      CustomModalService,
+      provideMockStore({ initialState })
+    ]
   });
 
   beforeEach(() => (spectator = createComponent()));

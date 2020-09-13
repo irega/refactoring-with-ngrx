@@ -64,6 +64,8 @@ import { questionsReducer } from './state/questions/reducers';
       useFactory: initialize,
       multi: true
     },
+    // INFO: We need this intermediate provider because our services depend on some application settings such as the apiUrl.
+    // In other case, the singleton instances of services are created before the settings are available.
     provideBootstrapEffects([QuestionGroupsEffects, QuestionsEffects, AnswersEffects])
   ],
   bootstrap: [AppComponent]

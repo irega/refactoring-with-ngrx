@@ -6,5 +6,4 @@ import { Component, Input } from '@angular/core';
 })
 export class SummaryComponent {
   @Input() totalQuestions = 0;
-  @Input() totalAnswers = 0;
 }

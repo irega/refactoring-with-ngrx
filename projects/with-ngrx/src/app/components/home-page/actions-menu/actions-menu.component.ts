@@ -12,6 +12,7 @@ export class ActionsMenuComponent {
   @Output() edited = new EventEmitter<QuestionGroup>();
   @Output() deleted = new EventEmitter<number>();
 
+  // TODO: In future iterations, analyze if it's better create a specific modal component instead of the general modal component.
   constructor(private customModalService: CustomModalService) {}
 
   openModalEdit() {

@@ -5,7 +5,7 @@ export interface AppSettings {
 }
 
 export const SETTINGS: AppSettings = {
-  apiUrl: 'http://localhost:8080/api'
+  apiUrl: ''
 };
 
 export let APP_SETTINGS = new InjectionToken<AppSettings>('app.settings');

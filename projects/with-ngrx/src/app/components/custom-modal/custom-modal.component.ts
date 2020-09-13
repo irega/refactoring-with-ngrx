@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 import { CustomModalService } from '../../services/custom-modal/custom-modal.service';
 
+// TODO: Once the refactor to ngrx will be finished, analyze if a general modal is needed, or we have specific modal components without common functionality.
 @Component({
   selector: 'app-custom-modal',
   templateUrl: './custom-modal.component.html'
@@ -37,6 +38,7 @@ export class CustomModalComponent implements OnDestroy {
   }
 
   onCancelClicked() {
+    // TODO: ¿Direct reference to document? :|
     document.querySelectorAll('.modal .checkboxes input').forEach(input => ((input as any).checked = false));
     this.customModalService.hide(this.params);
   }
@@ -45,6 +47,7 @@ export class CustomModalComponent implements OnDestroy {
     this.params.input = Array.isArray(this.params.input) ? this.result.slice() : this.params.input;
     this.params.confirmed = true;
     this.cdRef.detectChanges();
+    // TODO: ¿Direct reference to document? :|
     document.querySelectorAll('.modal .checkboxes input').forEach(input => ((input as any).checked = false));
     this.customModalService.hide(this.params);
   }
