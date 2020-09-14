@@ -4,7 +4,7 @@
       <h1 class="text-grey-darkest text-2xl">Answers</h1>
       <div class="flex mt-4 lg:w-3/4 lg:max-w-3xl">
         <input
-          class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker"
+          class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker create-answer-input"
           placeholder="Add an answer"
           (keyup)="addAnswer($event.keyCode)"
           [(ngModel)]="answerToAddText"
@@ -16,6 +16,7 @@
         <input
           type="text"
           value="{{ item.text }}"
+          id="answer-{{ item.id }}"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           (focusout)="updateAnswer(13, item, $event.target.value)"
           (keyup)="updateAnswer($event.keyCode, item, $event.target.value)"

@@ -28,4 +28,14 @@ describe('The questions component', () => {
   it('should be created', () => {
     expect(spectator.fixture.componentInstance).toBeTruthy();
   });
+
+  xit('should create a question', () => {});
+
+  xit('should edit a question', () => {});
+
+  xit('should delete a question', () => {});
+
+  xit('should expand a question', () => {});
+
+  xit('should collapse a question', () => {});
 });
