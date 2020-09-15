@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
@@ -24,7 +24,7 @@ describe('The create question effect', () => {
   let actions$: Observable<Action>;
   const createService = createServiceFactory({
     service: QuestionsEffects,
-    imports: [HttpClientModule],
+    imports: [HttpClientTestingModule],
     providers: [provideMockActions(() => actions$), provideMockStore()],
     mocks: [QuestionsService]
   });

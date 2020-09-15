@@ -17,6 +17,16 @@ describe('The answers component', () => {
     expect(spectator.fixture.componentInstance).toBeTruthy();
   });
 
+  it('should load the answers', () => {
+    const an_answer = Given.an_answer();
+    const an_answer_list = [an_answer];
+
+    spectator.setInput('answers', an_answer_list);
+
+    const an_existing_answer_input = spectator.query(`input[id="answer-${an_answer.id}"]`);
+    expect(an_existing_answer_input).toBeTruthy();
+  });
+
   it('should create an answer', () => {
     const a_new_answer = 'A new answer';
     const new_answer_input = spectator.query('.create-answer-input');
@@ -41,7 +51,7 @@ describe('The answers component', () => {
     spectator.setInput('answers', an_answer_list);
 
     const an_edited_answer = 'Edited answer';
-    let an_existing_answer_input = spectator.query(`input[id="answer-${an_answer.id}"]`);
+    const an_existing_answer_input = spectator.query(`input[id="answer-${an_answer.id}"]`);
     spectator.typeInElement(an_edited_answer, an_existing_answer_input);
     spectator.dispatchFakeEvent(an_existing_answer_input, 'focusout');
 
@@ -57,7 +67,7 @@ describe('The answers component', () => {
     });
     spectator.setInput('answers', an_answer_list);
 
-    let an_existing_answer_delete_button = spectator.query('button');
+    const an_existing_answer_delete_button = spectator.query('button');
     spectator.click(an_existing_answer_delete_button);
 
     expect(deleted_answer_id).toEqual(an_answer.id);
