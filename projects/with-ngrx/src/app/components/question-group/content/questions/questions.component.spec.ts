@@ -1,11 +1,8 @@
 import { FormsModule } from '@angular/forms';
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { MemoizedSelector } from '@ngrx/store';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { CustomModalService } from 'src/app/services/custom-modal/custom-modal.service';
 import { State } from 'src/app/state/definition';
-import { Question } from 'src/app/state/questions/entities';
-import { selectQuestions } from 'src/app/state/questions/selectors';
 import { Given } from 'src/app/state/questions/shared/questions.fixtures';
 import { AnswersComponent } from './answers/answers.component';
 import { QuestionsComponent } from './questions.component';
@@ -21,7 +18,6 @@ const initialState: State = {
 describe('The questions component', () => {
   let spectator: Spectator<QuestionsComponent>;
   let mockStore: MockStore;
-  let mockQuestionsSelector: MemoizedSelector<State, Question[]>;
   const createComponent = createComponentFactory({
     component: QuestionsComponent,
     declarations: [AnswersComponent],
@@ -32,8 +28,6 @@ describe('The questions component', () => {
   beforeEach(() => {
     spectator = createComponent();
     mockStore = spectator.inject(MockStore);
-    mockQuestionsSelector = mockStore.overrideSelector(selectQuestions, []);
-    spectator.detectChanges();
   });
 
   it('should be created', () => {
@@ -67,8 +61,7 @@ describe('The questions component', () => {
       edited_question_event = event;
     });
 
-    mockQuestionsSelector.setResult(a_question_list);
-    mockStore.refreshState();
+    mockStore.setState({ ...initialState, questions: a_question_list });
     spectator.detectChanges();
     const an_edited_question = 'Edited question';
     let an_existing_question_input = spectator.query(`input[id="question-${a_question.id}"]`);
@@ -89,8 +82,7 @@ describe('The questions component', () => {
       deleted_question_event = event;
     });
 
-    mockQuestionsSelector.setResult(a_question_list);
-    mockStore.refreshState();
+    mockStore.setState({ ...initialState, questions: a_question_list });
     spectator.detectChanges();
     let an_existing_question_delete_button = spectator.query(`button[id="delete-question-${a_question.id}"]`);
     spectator.click(an_existing_question_delete_button);
@@ -111,8 +103,7 @@ describe('The questions component', () => {
       toggled_question_event = event;
     });
 
-    mockQuestionsSelector.setResult(a_question_list);
-    mockStore.refreshState();
+    mockStore.setState({ ...initialState, questions: a_question_list });
     spectator.detectChanges();
     let an_existing_question_toggle_button = spectator.query(`button[id="toggle-question-${a_question.id}"]`);
     spectator.click(an_existing_question_toggle_button);
