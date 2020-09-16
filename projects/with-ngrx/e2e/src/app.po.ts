@@ -6,6 +6,6 @@ export class AppPage {
   }
 
   getTitleText() {
-    return element(by.css('.header__logo')).getText();
+    return element(by.css('nav span.text-xl')).getText();
   }
 }

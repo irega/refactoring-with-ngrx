@@ -9,6 +9,6 @@ describe('The Questions Manager App', () => {
 
   it('should display the title', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('QUESTIONS MANAGER');
+    expect(page.getTitleText()).toEqual('Questions Manager');
   });
 });
