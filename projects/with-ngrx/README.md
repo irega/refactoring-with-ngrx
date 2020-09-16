@@ -18,7 +18,7 @@ And then you can execute the application in development mode by executing the fo
     npm start
 ```
 
-This file will execute the application in **http://localhost:4200**. Then you can open the browser (we recommend Google Chrome) and set this url to enter the application.
+This script will execute the application at **http://localhost:4200**. Then you can open the browser (we recommend Google Chrome) and open this url to enter into the application.
 
 The next step you should do is **How to build documentation** of the project (below). The documentation are the manuals of the application structure, design, architecture, etc.
 
@@ -38,24 +38,24 @@ or in production (release) mode:
 
 # What tasks can I execute? (build, test, lint.. etc)
 
-If you are reading the docs in html format, open the section "Additional documentation", in sub-section **Development tasks** to see all the tasks you can execute.
+If you are reading the docs in HTML format, open the section _Additional documentation_, an then the sub-section **Development tasks** to see all the tasks you can execute.
 
-If your are reading in markdown (.md) format, open the file "./docs/development-tasks.md" to see all the information about dev tasks.
+If your are reading in markdown (.md) format, open the file _./docs/development-tasks.md_ to see all the information about dev tasks.
 
 # How to build documentation
 
-You can build the manuals in html format by running:
+You can build the manuals in HTML format by running:
 
 ```bash
     npm run compodoc
 ```
 
-The most **recommended** advice to understand the project it's build the project docs using the described command an reading the generated file "dist/docs/index.html".
+In order to understand the project, we recommend build the project docs using the described command and read the generated file _dist/docs/index.html_.
 
-If you can't create the docs in html, you can read the docs in markdown (plain text) that are in:
+If you can't create the docs in HTML, you can read the docs in markdown (plain text) which are located in:
 
-- **manual**: in "docs" folder. Contains all the explanations about the high-level of the project.
-- **tests**: the tests are the real behaviour of the application so then they are the most realistic documentation of the project. You can find and read each test inside "specs" folders. These folder are by proximity inside each component folder.
+- **manual**: in _docs_ folder. Contains all the high-level explanations about the project.
+- **tests**: the tests are the real behaviour of the application so then they are the most realistic documentation of the project. You can find and read each test inside the _specs_ folders. These folders are located by proximity near to each component.
 
 # Configure your editor
 

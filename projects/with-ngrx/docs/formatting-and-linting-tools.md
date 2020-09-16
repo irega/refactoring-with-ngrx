@@ -128,7 +128,7 @@ We use stylelint to detect linting errors in our styles files.
 }
 ```
 
-With the "lint:styles:check" npm script, we can check if some stylelint rule has any conflict with any Prettier rule With the "lint:styles" npm script, we can check if we have some style errors in our files.
+With the "lint:styles:check" npm script, we can check if some stylelint rule has any conflict with any Prettier rule. With the "lint:styles" npm script, we can check if we have some style errors in our files.
 
 - VSCode
 

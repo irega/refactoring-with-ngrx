@@ -32,7 +32,7 @@ The package.json contains in scripts section:
   }
 ```
 
-The task we have configured are:
+The tasks we have configured are:
 
 - **commit**: Executes a git commit through commitizen prompt.
 
@@ -46,7 +46,7 @@ The task we have configured are:
   npm run ng COMMAND_NAME --COMMAND_PARAMETERS
 ```
 
-- **start**: Executes the application over a web dev server in http://localhost:4200.
+- **start**: Executes the application over a web dev server at http://localhost:4200.
 
 ```bash
   npm start
@@ -64,25 +64,25 @@ or
   npm run build
 ```
 
-- **build:barrel**: Builds the file "src\app\app.module.ts" that contains in a unique point all references to all the elements that contains the module. This file has references to pipes, componentes, directives and providers found in the module. This task uses regular expressions to detect and group elements. This barrel it's used in App module to register all elements.
+- **build:barrel**: Generates the file _src\app\app.barrel.ts_ that contains all references to all the elements that contains the module in a unique point. This file has references to pipes, componentes, directives and providers found in the module. This task uses regular expressions to detect and group the elements. This barrel it's used in App module to register all elements.
 
 ```bash
    npm run build:barrel
 ```
 
-- **build:dev**: Cleans the "/dist" folder, builds the application static files in production/release mode with source maps.
+- **build:dev**: Cleans the _/dist_ folder, builds the application static files in production/release mode with source maps.
 
 ```bash
   npm run build:dev
 ```
 
-- **build:prod**: Cleans the "/dist" folder, builds the application static files in production/release mode without source maps.
+- **build:prod**: Cleans the _/dist_ folder, builds the application static files in production/release mode without source maps.
 
 ```bash
   npm run build:prod
 ```
 
-- **clean:build**: Cleans the content of "/dist" folder.
+- **clean:build**: Cleans the content of _/dist_ folder.
 
 ```bash
   npm run clean:build
@@ -106,7 +106,7 @@ or
   npm run test:coverage
 ```
 
-- **test:watch**: Executes the unit and UI tests in watch mode: for each change it will execute the tests.
+- **test:watch**: Executes the unit and UI tests in watch mode: for each change detected it will execute the tests again.
 
 ```bash
   npm run test:watch
@@ -154,7 +154,7 @@ or
   npm run e2e
 ```
 
-- **compodoc**: Creates the HTML documentation with components API and manuals of the application. Documentation will be generated in "dist/docs".
+- **compodoc**: Creates the HTML documentation with components API and manuals of the application. Documentation will be generated in _dist/docs_.
 
 ```bash
   npm run compodoc
