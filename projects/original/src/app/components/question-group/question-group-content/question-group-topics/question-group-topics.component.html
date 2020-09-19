@@ -1,0 +1,30 @@
+<div
+  class="h-100 w-full flex bg-teal-lightest font-sans items-center justify-center"
+>
+  <div class="bg-white rounded shadow p-6 m-4 w-full">
+    <h1 class="text-grey-darkest text-2xl">Topics</h1>
+    <div class="py-5 pr-3">
+      <div
+        class="flex justify-between pr-2 py-2"
+        *ngFor="let item of selectedTopics"
+      >
+        <p class="flex text-gray-700">
+          <svg
+            class="w-2 text-gray-500 mx-2"
+            viewBox="0 0 8 8"
+            fill="currentColor"
+          >
+            <circle cx="4" cy="4" r="3" />
+          </svg>
+          {{ item.name }}
+        </p>
+      </div>
+    </div>
+    <button
+      class="p-2 border-2 rounded border-teal-200 hover:text-white hover:bg-teal-500"
+      (click)="showSelectTopicsModal()"
+    >
+      Select
+    </button>
+  </div>
+</div>

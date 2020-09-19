@@ -10,6 +10,10 @@ import { CustomModalComponent } from "./components/custom-modal/custom-modal.com
 import { CustomModalService } from "./components/custom-modal/custom-modal.service";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
+import { QuestionGroupContentComponent } from "./components/question-group/question-group-content/question-group-content.component";
+import { QuestionGroupAnswersComponent } from "./components/question-group/question-group-content/question-group-questions/question-group-answers/question-group-answers.component";
+import { QuestionGroupQuestionsComponent } from "./components/question-group/question-group-content/question-group-questions/question-group-questions.component";
+import { QuestionGroupTopicsComponent } from "./components/question-group/question-group-content/question-group-topics/question-group-topics.component";
 import { QuestionGroupSummaryComponent } from "./components/question-group/question-group-summary/question-group-summary.component";
 import { QuestionGroupComponent } from "./components/question-group/question-group.component";
 import { AnswersService } from "./services/answers/answers.service";
@@ -25,7 +29,11 @@ import { TopicsService } from "./services/topics/topics.service";
     HomeComponent,
     CustomModalComponent,
     QuestionGroupComponent,
-    QuestionGroupSummaryComponent
+    QuestionGroupSummaryComponent,
+    QuestionGroupContentComponent,
+    QuestionGroupTopicsComponent,
+    QuestionGroupQuestionsComponent,
+    QuestionGroupAnswersComponent
   ],
   imports: [
     BrowserModule,

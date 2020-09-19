@@ -25,3 +25,12 @@
   *ngIf="step === 0"
   [numberOfQuestions]="numberOfQuestions"
 ></app-question-group-summary>
+
+<app-question-group-content
+  *ngIf="step === 1"
+  [questions]="questions"
+  [answers]="answers"
+  [selectedTopicIds]="selectedTopicIds"
+  [topics]="topics"
+  (messageEventFromContent)="receiveMessageFromContent($event)"
+></app-question-group-content>
