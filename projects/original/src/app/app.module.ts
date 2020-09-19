@@ -10,6 +10,7 @@ import { CustomModalComponent } from "./components/custom-modal/custom-modal.com
 import { CustomModalService } from "./components/custom-modal/custom-modal.service";
 import { HeaderComponent } from "./components/header/header.component";
 import { HomeComponent } from "./components/home/home.component";
+import { QuestionGroupSummaryComponent } from "./components/question-group/question-group-summary/question-group-summary.component";
 import { QuestionGroupComponent } from "./components/question-group/question-group.component";
 import { AnswersService } from "./services/answers/answers.service";
 import { FakeApiService } from "./services/fake-api/fake-api.service";
@@ -23,7 +24,8 @@ import { TopicsService } from "./services/topics/topics.service";
     HeaderComponent,
     HomeComponent,
     CustomModalComponent,
-    QuestionGroupComponent
+    QuestionGroupComponent,
+    QuestionGroupSummaryComponent
   ],
   imports: [
     BrowserModule,

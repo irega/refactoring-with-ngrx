@@ -10,11 +10,7 @@
   >
   </app-home>
 
-  <app-question-group
-    *ngIf="step === 1"
-    [id]="questionGroupId"
-    [questionGroups]="questionGroups"
-  >
+  <app-question-group *ngIf="step === 1" [id]="questionGroupId">
   </app-question-group>
 </main>
 

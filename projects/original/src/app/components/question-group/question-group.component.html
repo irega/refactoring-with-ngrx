@@ -1,1 +1,27 @@
-<h1>{{ id }}</h1>
+<nav class="bg-white px-8 pt-2 shadow-md">
+  <div class="-mb-px flex justify-center">
+    <a
+      class="cursor-pointer no-underline border-b-2 uppercase tracking-wide font-bold text-xs py-3 mr-8"
+      (click)="setStep(0)"
+      [ngClass]="{
+        'text-teal-500 border-teal-500': step === 0,
+        'text-teal-200 border-transparent': step !== 0
+      }"
+      >Summary</a
+    >
+    <a
+      class="cursor-pointer no-underline border-b-2 uppercase tracking-wide font-bold text-xs py-3 mr-8"
+      [ngClass]="{
+        'text-teal-500 border-teal-500': step === 1,
+        'text-teal-200 border-transparent': step !== 1
+      }"
+      (click)="setStep(1)"
+      >Content</a
+    >
+  </div>
+</nav>
+
+<app-question-group-summary
+  *ngIf="step === 0"
+  [numberOfQuestions]="numberOfQuestions"
+></app-question-group-summary>

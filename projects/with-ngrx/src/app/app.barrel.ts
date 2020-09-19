@@ -11,7 +11,7 @@ import { QuestionsComponent } from './components/question-group/content/question
 import { SelectTopicsModalComponent } from './components/question-group/content/topics/select-topics-modal/select-topics-modal.component';
 import { TopicsComponent } from './components/question-group/content/topics/topics.component';
 import { QuestionGroupComponent } from './components/question-group/question-group.component';
-import { SummaryComponent } from './components/question-group/summary/summary,.component';
+import { SummaryComponent } from './components/question-group/summary/summary.component';
 
 import { AnswersService } from './services/answers/answers.service';
 import { CustomModalService } from './services/custom-modal/custom-modal.service';

@@ -10,7 +10,7 @@ import { QuestionsComponent } from './content/questions/questions.component';
 import { SelectTopicsModalComponent } from './content/topics/select-topics-modal/select-topics-modal.component';
 import { TopicsComponent } from './content/topics/topics.component';
 import { QuestionGroupComponent } from './question-group.component';
-import { SummaryComponent } from './summary/summary,.component';
+import { SummaryComponent } from './summary/summary.component';
 
 const initialState: State = {
   answers: [],

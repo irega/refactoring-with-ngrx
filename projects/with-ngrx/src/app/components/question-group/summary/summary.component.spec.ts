@@ -1,5 +1,5 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator';
-import { SummaryComponent } from './summary,.component';
+import { SummaryComponent } from './summary.component';
 
 describe('The summary component', () => {
   let spectator: Spectator<SummaryComponent>;
