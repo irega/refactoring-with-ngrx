@@ -1,0 +1,63 @@
+<div class="flex flex-col sm:flex-row mt-5">
+  <div class="sm:w-1/4 p-2">
+    <div class="bg-white px-6 py-8 rounded-lg shadow-lg text-center">
+      <div class="mb-3">
+        <img
+          class="w-48 mx-auto rounded-full"
+          src="/assets/images/question-group-avatar.png"
+          alt=""
+        />
+      </div>
+      <div class="h-12"></div>
+      <a
+        href="#"
+        class="px-4 py-2 bg-teal-400 text-white rounded-full"
+        (click)="onNewQuestionGroupClicked()"
+        >Create</a
+      >
+    </div>
+  </div>
+
+  <div class="sm:w-1/4 p-2" *ngFor="let questionGroup of questionGroups">
+    <div class="bg-white px-6 py-8 rounded-lg shadow-lg text-center">
+      <div class="mb-3">
+        <a
+          (click)="
+            onQuestionGroupClicked(questionGroup ? questionGroup.id : '')
+          "
+        >
+          <img
+            class="w-48 mx-auto rounded-full"
+            src="/assets/images/question-group-avatar.png"
+            alt=""
+          />
+        </a>
+      </div>
+
+      <div class="h-12">
+        <a
+          class="text-xl font-medium text-gray-700 mb-5 question-group-name"
+          (click)="
+            onQuestionGroupClicked(questionGroup ? questionGroup.id : '')
+          "
+          >{{ questionGroup.name }}</a
+        >
+      </div>
+
+      <a
+        href="#"
+        class="px-4 py-2 bg-teal-400 text-white rounded-full"
+        (click)="onEditQuestionGroupClicked(questionGroup)"
+        >Edit</a
+      >
+      <a
+        href="#"
+        class="px-4 py-2 bg-teal-400 text-white rounded-full ml-2"
+        (click)="
+          onDeleteQuestionGroupClicked(questionGroup ? questionGroup.id : '')
+        "
+        >Delete</a
+      >
+    </div>
+  </div>
+</div>

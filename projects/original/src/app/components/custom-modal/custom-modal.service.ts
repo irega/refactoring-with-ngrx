@@ -1,6 +1,5 @@
-import { EventEmitter, Injectable, Output } from "@angular/core";
+import { EventEmitter, Output } from "@angular/core";
 
-@Injectable()
 export class CustomModalService {
   @Output() stateChange: EventEmitter<any> = new EventEmitter();
 

@@ -24,12 +24,12 @@ export class ActionsMenuComponent {
       ok: { text: 'Edit' },
       cancel: { text: 'Cancel' }
     });
-    const subscription = this.customModalService.stateChange.subscribe(({ confirmed, title, icon }) => {
+    const subscription = this.customModalService.stateChange.subscribe(({ confirmed, title }) => {
       subscription.unsubscribe();
       if (!confirmed) {
         return;
       }
-      this.edited.emit(Object.assign({}, this.questionGroup, { name: title, image: icon }));
+      this.edited.emit(Object.assign({}, this.questionGroup, { name: title }));
     });
   }
 
