@@ -110,7 +110,11 @@ export class QuestionGroupComponent implements OnChanges, OnDestroy {
           .then(() => this.getQuestionGroup());
         break;
       case "content-question-toggle":
-        this.openedQuestionId = value;
+        if (value === this.openedQuestionId) {
+          this.openedQuestionId = null;
+        } else {
+          this.openedQuestionId = value;
+        }
         this.getAnswers(value).then(() => this.getQuestionGroup());
         break;
       case "content-answer-add":
