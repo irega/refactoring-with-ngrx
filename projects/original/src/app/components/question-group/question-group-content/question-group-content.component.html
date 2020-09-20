@@ -1,3 +1,8 @@
+<app-question-group-questions
+  [questions]="questions"
+  [answers]="answers"
+  (messageEventFromQuestions)="receiveMessageFromQuestions($event)"
+></app-question-group-questions>
 <app-question-group-topics
   [topics]="topics"
   [selectedTopicIds]="selectedTopicIds"
