@@ -37,7 +37,7 @@ export class QuestionGroupQuestionsComponent extends QuestionGroupBaseComponent 
         if (params.confirmed) {
           this.messageEventFromQuestions.emit({
             action: "question-delete",
-            value: questionId
+            value: elementId
           });
         }
       }
