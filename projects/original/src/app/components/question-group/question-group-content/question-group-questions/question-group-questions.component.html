@@ -8,15 +8,15 @@
         <input
           class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker create-question-input"
           placeholder="Add a question"
-          (keyup)="addQuestion($event.keyCode)"
-          [(ngModel)]="questionToAddText"
+          (keyup)="onAdd($event.keyCode)"
+          [(ngModel)]="entityToAddText"
         />
       </div>
     </div>
     <div class="mt-8">
       <div
         class="flex-wrap mb-4 items-center lg:w-3/4 lg:max-w-3xl"
-        *ngFor="let item of questions"
+        *ngFor="let item of items"
       >
         <div class="flex">
           <input
@@ -24,8 +24,8 @@
             value="{{ item.text }}"
             id="question-{{ item.id }}"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            (focusout)="updateQuestion(13, item, $event.target.value)"
-            (keyup)="updateQuestion($event.keyCode, item, $event.target.value)"
+            (focusout)="onUpdate(13, item, $event.target.value)"
+            (keyup)="onUpdate($event.keyCode, item, $event.target.value)"
           />
           <button
             id="toggle-question-{{ item.id }}"
@@ -37,7 +37,7 @@
           <button
             id="delete-question-{{ item.id }}"
             class="flex-no-shrink p-2 ml-2 border-2 rounded border-teal-200 hover:text-white hover:bg-teal-500"
-            (click)="deleteQuestion(item.id)"
+            (click)="onDelete(item.id)"
           >
             Delete
           </button>
@@ -45,10 +45,8 @@
 
         <app-question-group-answers
           *ngIf="item.isOpened"
-          [answers]="answers"
-          (add)="addAnswer($event)"
-          (edit)="editAnswer($event)"
-          (delete)="deleteAnswer($event)"
+          [items]="answers"
+          (messageEventFromAnswers)="receiveMessageFromAnswers($event)"
         ></app-question-group-answers>
       </div>
     </div>

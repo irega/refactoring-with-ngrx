@@ -8,27 +8,27 @@
         <input
           class="shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker create-answer-input"
           placeholder="Add an answer"
-          (keyup)="addAnswer($event.keyCode)"
-          [(ngModel)]="answerToAddText"
+          (keyup)="onAdd($event.keyCode)"
+          [(ngModel)]="entityToAddText"
         />
       </div>
     </div>
     <div class="mt-8">
       <div
         class="flex mb-4 items-center lg:w-3/4 lg:max-w-3xl"
-        *ngFor="let item of answers"
+        *ngFor="let item of items"
       >
         <input
           type="text"
           value="{{ item.text }}"
           id="answer-{{ item.id }}"
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          (focusout)="updateAnswer(13, item, $event.target.value)"
-          (keyup)="updateAnswer($event.keyCode, item, $event.target.value)"
+          (focusout)="onUpdate(13, item, $event.target.value)"
+          (keyup)="onUpdate($event.keyCode, item, $event.target.value)"
         />
         <button
           class="flex-no-shrink p-2 ml-2 border-2 rounded border-teal-200 hover:text-white hover:bg-teal-500"
-          (click)="deleteAnswer(item.id)"
+          (click)="onDelete(item.id)"
         >
           Delete
         </button>
