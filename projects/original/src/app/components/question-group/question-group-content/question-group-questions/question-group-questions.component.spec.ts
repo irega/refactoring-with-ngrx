@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { QuestionGroupQuestionsComponent } from "./question-group-questions.component";
 
 describe("QuestionGroupQuestionsComponent", () => {
   let component: QuestionGroupQuestionsComponent;
