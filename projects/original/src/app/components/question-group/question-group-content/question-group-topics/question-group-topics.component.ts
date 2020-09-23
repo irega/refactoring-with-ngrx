@@ -30,18 +30,19 @@ export class QuestionGroupTopicsComponent implements OnChanges {
   constructor(private customModalService: CustomModalService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.selectedTopicIds) {
-      this.selectedTopics = changes.selectedTopicIds.currentValue.map(st =>
-        this.topics.find(t => t.id === st)
-      );
-    }
+    const topics = changes.topics ? changes.topics.currentValue : this.topics;
+    const selectedTopicIds = changes.selectedTopicIds
+      ? changes.selectedTopicIds.currentValue
+      : this.selectedTopicIds;
 
-    if (changes.topics) {
-      this.selectTopicsModalParams = {
-        ...this.selectTopicsModalParams,
-        input: changes.topics.currentValue.map(t => t.name)
-      };
-    }
+    this.selectedTopics = selectedTopicIds.map(st =>
+      topics.find(t => t.id === st)
+    );
+
+    this.selectTopicsModalParams = {
+      ...this.selectTopicsModalParams,
+      input: topics.map(t => t.name)
+    };
   }
 
   showSelectTopicsModal() {
