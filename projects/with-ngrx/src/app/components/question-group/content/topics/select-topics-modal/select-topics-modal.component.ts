@@ -25,6 +25,7 @@ export class SelectTopicsModalComponent {
   onCancelClicked() {
     // TODO: ¿Direct reference to document? :|
     document.querySelectorAll('.modal .checkboxes input').forEach(input => ((input as any).checked = false));
+    this.result = [];
     this.closed.emit(this.params);
   }
 
@@ -37,6 +38,7 @@ export class SelectTopicsModalComponent {
 
     // TODO: ¿Direct reference to document? :|
     document.querySelectorAll('.modal .checkboxes input').forEach(input => ((input as any).checked = false));
+    this.result = [];
     this.closed.emit(newParams);
   }
 }
