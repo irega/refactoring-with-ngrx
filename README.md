@@ -21,4 +21,4 @@ Presented in the talk _Plantándole cara al Legacy Code con NgRx_ at [DotNet2020
 - Learned lessons
 - References
 
-You can view the talk video in the following [link]().
+You can view the talk video in the following [link](https://www.youtube.com/watch?v=eXmLwY_vYXc).
